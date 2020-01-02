@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mysql_microservice:
+    build: './mysql-microservice'
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=ivo
+      - MYSQL_PASSWORD=admin
+      - MYSQL_DATABASE=chatapp
+    # volumes: 
+      # - "./mysql-microservice/db:/var/lib/mysql"
+  nodejs_microservice:
+    build: './nodejs-microservice'
+    depends_on:
+      - mysql_microservice
+    environment:
+      - NODEJS_DB_HOST=mysql_microservice
+      - NODEJS_DB_USER=root
+      - NODEJS_DB_PASSWORD=admin
+      - NODEJS_DB=chatapp
+    volumes:
+      - './nodejs-microservice/src:/usr/src/app/src'
+    ports:
+      - '3000:3000'
+  # angular_microservice:
+  #   build: './angular-microservice'
+  #   depends_on:
+  #     - nodejs_microservice
+  #   ports:
+  #     - '4200:80'
