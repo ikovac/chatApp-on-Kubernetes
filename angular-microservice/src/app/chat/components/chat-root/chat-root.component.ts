@@ -11,5 +11,4 @@ export class ChatRootComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
