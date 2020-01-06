@@ -18,6 +18,8 @@ services:
       - NODEJS_DB_USER=root
       - NODEJS_DB_PASSWORD=admin
       - NODEJS_DB=chatapp
+      - NODEJS_JWT_SECRET=my_hard_to_guess_secret
+      # - NODEJS_CLIENT_HOST=angular_microservice
     volumes:
       - './nodejs-microservice/src:/usr/src/app/src'
     ports:

@@ -3,22 +3,37 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
 import { Repository } from 'typeorm';
 import { IUser } from 'src/interfaces/user.interface';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class UserService {
-    constructor(@InjectRepository(User) private readonly userRepo: Repository<User>) { }
+    constructor(
+        @InjectRepository(User) private readonly userRepo: Repository<User>,
+        private readonly authService: AuthService,
+    ) { }
 
-    async checkIfUserIsOk(user: IUser): Promise<boolean> {
+    async validateUser(user: IUser): Promise<IUser> {
         const dbUser = await this.userRepo.findOne({ username: user.username });
 
         if (!dbUser) {
-            return false;
+            return null;
         }
 
         if (dbUser.pass !== user.pass) {
-            return false;
+            return null;
         }
 
-        return true;
+        const {pass, ...rest} = dbUser;
+        return rest;
+    }
+
+    async login(user: IUser) {
+        const result = await this.validateUser(user);
+
+        if(!result) {
+            return null;
+        }
+
+        return await this.authService.sign(result);
     }
 }

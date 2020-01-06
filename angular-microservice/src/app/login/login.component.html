@@ -15,6 +15,10 @@
           <input matInput type="password" placeholder="Password" formControlName="pass" required>
         </mat-form-field>
 
+        <div class="error-msg" *ngIf="errorMsg">
+          {{ errorMsg }}
+        </div>
+
       </mat-card-content>
       <button mat-stroked-button color="accent" type="submit" [disabled]="!loginForm.valid" class="btn-block">Log in</button>
     </form>

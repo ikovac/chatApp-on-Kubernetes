@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     LoginRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   bootstrap: [LoginComponent]
 })

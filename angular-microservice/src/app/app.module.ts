@@ -6,19 +6,24 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
 import { AngularMaterialModule } from './angular-material.module';
+import { ChatModule } from './chat/chat.module';
+import { CookieService } from 'ngx-cookie-service';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
-    LoginModule
+    LoginModule,
+    ChatModule,
   ],
-  providers: [],
+  providers: [CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
