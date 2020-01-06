@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CookieService } from 'ngx-cookie-service';
+import { LoginService } from '../login/login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,18 +9,17 @@ import { CookieService } from 'ngx-cookie-service';
 export class AuthGuard implements CanActivate {
   constructor(
     private readonly router: Router,
-    private cookieService: CookieService,
+    private loginService: LoginService,
   ) { }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-    if (this.cookieService.check('token')) {
+    if (this.loginService.isAuthenticated()) {
       return true;
     }
 
     this.router.navigate(['/login']);
-
     return false;
   }
 

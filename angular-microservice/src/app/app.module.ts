@@ -9,6 +9,15 @@ import { AngularMaterialModule } from './angular-material.module';
 import { ChatModule } from './chat/chat.module';
 import { CookieService } from 'ngx-cookie-service';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
+import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
+
+export function jwtOptionsFactory(cookieService) {
+  return {
+    tokenGetter: () => {
+      return cookieService.get('token');
+    }
+  }
+}
 
 @NgModule({
   declarations: [
@@ -22,6 +31,13 @@ import { PageNotFoundComponent } from './shared/components/page-not-found/page-n
     AngularMaterialModule,
     LoginModule,
     ChatModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [CookieService]
+      }
+    }),
   ],
   providers: [CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
