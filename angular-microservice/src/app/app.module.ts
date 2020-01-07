@@ -10,6 +10,9 @@ import { ChatModule } from './chat/chat.module';
 import { CookieService } from 'ngx-cookie-service';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
+import { environment } from 'src/environments/environment';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 export function jwtOptionsFactory(cookieService) {
   return {
@@ -17,7 +20,12 @@ export function jwtOptionsFactory(cookieService) {
       return cookieService.get('token');
     }
   }
-}
+};
+
+export const socketConfig: SocketIoConfig = {
+  url: environment.serverUrl,
+  options: {}
+};
 
 @NgModule({
   declarations: [
@@ -38,6 +46,7 @@ export function jwtOptionsFactory(cookieService) {
         deps: [CookieService]
       }
     }),
+    SocketIoModule.forRoot(socketConfig),
   ],
   providers: [CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

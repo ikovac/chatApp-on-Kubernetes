@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SocketIoService } from '../../services/socket-io.service';
 
 @Component({
   selector: 'app-chat-root',
@@ -7,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatRootComponent implements OnInit {
 
-  constructor() { }
+  constructor(private socketService: SocketIoService) { }
 
   ngOnInit() {
+    this.socketService.onMsg().subscribe(msg => {
+      console.log(msg);
+    });
   }
 }
