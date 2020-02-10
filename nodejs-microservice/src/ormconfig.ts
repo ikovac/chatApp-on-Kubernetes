@@ -1,4 +1,4 @@
-import {ConnectionOptions} from 'typeorm';
+import { ConnectionOptions } from 'typeorm';
 
 const config: ConnectionOptions = {
     type: 'mysql',
@@ -7,8 +7,10 @@ const config: ConnectionOptions = {
     password: String(process.env.NODEJS_DB_PASSWORD) || 'admin',
     database: String(process.env.NODEJS_DB) || 'chatapp',
     entities: ['dist/**/*.entity{.ts,.js}'],
-    migrations: ['dist/migrations/**/*.entity{.ts,.js}'],
+    migrations: [__dirname + '/migrations/**/*.entity{.ts,.js}'],
     synchronize: false,
+    migrationsRun: true,
+    logging: true,
     cli: {
         migrationsDir: 'src/migrations',
     }
