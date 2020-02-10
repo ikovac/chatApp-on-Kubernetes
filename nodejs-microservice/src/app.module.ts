@@ -1,16 +1,16 @@
 import { Module } from '@nestjs/common';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { connection } from './config/database-connection';
 import { UserModule } from './modules/user/user.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { EventsModule } from './modules/events/events.module';
+import config = require('./ormconfig');
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(connection),
+    TypeOrmModule.forRoot(config),
     UserModule,
     AuthModule,
     EventsModule,
