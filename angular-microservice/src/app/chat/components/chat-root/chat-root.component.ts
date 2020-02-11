@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketIoService } from '../../services/socket-io.service';
+import {conversationList} from '../../dummydata';
 
 @Component({
   selector: 'app-chat-root',
@@ -7,12 +8,13 @@ import { SocketIoService } from '../../services/socket-io.service';
   styleUrls: ['./chat-root.component.scss']
 })
 export class ChatRootComponent implements OnInit {
+  conversationList = conversationList;
 
   constructor(private socketService: SocketIoService) { }
 
   ngOnInit() {
-    this.socketService.onMsg().subscribe(msg => {
+    /* this.socketService.onMsg().subscribe(msg => {
       console.log(msg);
-    });
+    }); */
   }
 }

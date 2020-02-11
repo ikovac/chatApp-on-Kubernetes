@@ -1,0 +1,5 @@
+<div class="conversation-list-wrapper">
+  <div class="conversation-list-element" *ngFor="let conversation_summary of conversationList">
+    <app-conversation-list-component [chatSummaryComponent]="conversation_summary"></app-conversation-list-component>
+  </div>
+</div>

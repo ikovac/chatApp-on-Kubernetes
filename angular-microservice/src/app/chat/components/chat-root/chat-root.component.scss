@@ -4,11 +4,17 @@
   width: 100%;
   height: 100%;
   display: block;
-  background-color: $whatsapp_green;
+  // background-color: $whatsapp_green;
+  background: -webkit-linear-gradient(180deg, $whatsapp_green 20%, #d6dbd9 20%);
+  background: -o-linear-gradient(180deg, $whatsapp_green 20%, #d6dbd9 20%);
+  background: -moz-linear-gradient(180deg, $whatsapp_green 20%, #d6dbd9 20%);
+  background: linear-gradient(180deg, $whatsapp_green 20%, #d6dbd9 20%);
   padding: 30px;
 }
 
 .chat-box {
   background-color: white;
-  padding: 30px;
+  display: grid;
+  grid-template-columns: 40% 60%;
+  height: 90vh;
 }
