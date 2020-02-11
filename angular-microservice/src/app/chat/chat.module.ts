@@ -6,13 +6,22 @@ import { ConversationComponent } from './components/conversation/conversation.co
 import { ChatRootComponent } from './components/chat-root/chat-root.component';
 import { ConversationListComponent } from './components/conversation-list/conversation-list.component';
 import { ConversationListComponentComponent } from './components/conversation-list-component/conversation-list-component.component';
+import { MessageButtonsSectionComponent } from './components/message-buttons-section/message-buttons-section.component';
+import { AngularMaterialModule } from '../angular-material.module';
 
 
 @NgModule({
-  declarations: [ChatRootComponent, ConversationComponent, ConversationListComponent, ConversationListComponentComponent],
+  declarations: [
+    ChatRootComponent,
+    ConversationComponent,
+    ConversationListComponent,
+    ConversationListComponentComponent,
+    MessageButtonsSectionComponent
+  ],
   imports: [
     CommonModule,
-    ChatRoutingModule
+    ChatRoutingModule,
+    AngularMaterialModule
   ],
   entryComponents: [ChatRootComponent]
 })

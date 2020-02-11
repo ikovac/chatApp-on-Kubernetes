@@ -1,0 +1,13 @@
+@import "../../../../variables.scss";
+
+:host {
+  background-color: $whatsapp_gray_bg;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 60px;
+}
+
+.new-group-icon {
+  margin: 0 30px 0 30px;
+}

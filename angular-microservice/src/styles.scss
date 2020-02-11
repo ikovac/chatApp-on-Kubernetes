@@ -1,9 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'sweetalert2/src/sweetalert2.scss';
 
+@font-face {
+  font-family: 'Segoe UI Regular';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Segoe UI Regular'), url('./assets/fonts/Segoe\ UI.ttf') format('ttf');
+}
+
 * {
   box-sizing: border-box;
+  font-family: 'Segoe UI Regular';
 }
+
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
