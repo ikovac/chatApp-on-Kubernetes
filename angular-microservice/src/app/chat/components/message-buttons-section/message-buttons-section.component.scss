@@ -9,5 +9,16 @@
 }
 
 .new-group-icon {
-  margin: 0 30px 0 30px;
+  margin: 0 20px 0 20px;
+}
+
+.icon-div {
+  color: $icon_color;
+  padding: 5px 10px;
+  cursor: pointer;
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
 }

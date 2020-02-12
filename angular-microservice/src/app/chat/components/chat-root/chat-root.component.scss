@@ -9,12 +9,29 @@
   background: -o-linear-gradient(180deg, $whatsapp_green 20%, #d6dbd9 20%);
   background: -moz-linear-gradient(180deg, $whatsapp_green 20%, #d6dbd9 20%);
   background: linear-gradient(180deg, $whatsapp_green 20%, #d6dbd9 20%);
-  padding: 30px;
+  // padding: 30px;
 }
 
 .chat-box {
-  background-color: white;
   display: grid;
   grid-template-columns: 30% 1fr;
-  height: 90vh;
+  height: 100%;
+}
+
+.chat-box-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: $chat_box_wrapper_max_width;
+  min-width: $chat_box_wrapper_min_width;
+  margin: 0 auto;
+  background-color: white;
+  height: 100%;
+}
+
+@media screen and (min-width: $chat_box_wrapper_max_width) {
+  .chat-box-wrapper {
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.06), 0 2px 5px 0 rgba(0,0,0,.2);
+    top: 19px;
+    height: calc(100% - 38px);
+  }
 }

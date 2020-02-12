@@ -14,6 +14,51 @@ export const conversationList = [
     last_msg: 'There will be a lot of fishs.',
     datetime: 'jučer'
   },
+  {
+    friend_name: 'Ivo Ivic',
+    last_msg: 'Okey, np bro!',
+    datetime: '11:28'
+  },
+  {
+    friend_name: 'Mate Matic',
+    last_msg: 'Hello, my name is Mate and i came from Alabama.',
+    datetime: 'jučer'
+  },
+  {
+    friend_name: 'Frano Franic',
+    last_msg: 'There will be a lot of fishs.',
+    datetime: 'jučer'
+  },
+  {
+    friend_name: 'Ivo Ivic',
+    last_msg: 'Okey, np bro!',
+    datetime: '11:28'
+  },
+  {
+    friend_name: 'Mate Matic',
+    last_msg: 'Hello, my name is Mate and i came from Alabama.',
+    datetime: 'jučer'
+  },
+  {
+    friend_name: 'Frano Franic',
+    last_msg: 'There will be a lot of fishs.',
+    datetime: 'jučer'
+  },
+  {
+    friend_name: 'Ivo Ivic',
+    last_msg: 'Okey, np bro!',
+    datetime: '11:28'
+  },
+  {
+    friend_name: 'Mate Matic',
+    last_msg: 'Hello, my name is Mate and i came from Alabama.',
+    datetime: 'jučer'
+  },
+  {
+    friend_name: 'Frano Franic',
+    last_msg: 'There will be a lot of fishs.',
+    datetime: 'jučer'
+  },
 ];
 
 export const dummyConversation = [
