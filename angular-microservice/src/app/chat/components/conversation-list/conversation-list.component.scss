@@ -1,7 +1,25 @@
 :host {
   display: block;
+  max-height: 100%;
+  overflow: hidden;
 }
 
 .conversation-list-wrapper {
-  // padding-top: 20px;
+  overflow-y: scroll;
+  max-height: calc(100% - 60px);
+}
+
+.conversation-list-wrapper::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+/* Track */
+.conversation-list-wrapper::-webkit-scrollbar-track {
+  background: hsla(0,0%,100%,.08);
+}
+
+/* Handle */
+.conversation-list-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,.2);
 }
