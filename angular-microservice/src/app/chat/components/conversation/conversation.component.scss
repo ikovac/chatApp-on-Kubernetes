@@ -2,7 +2,7 @@
 
 :host {
   background-color: $whatsapp_conversation_background_color;
-  border-left: 1px solid #e4e5e6;
+  border-left: 1px solid #e0e0e0;
 }
 
 .conversation-selected {
@@ -60,3 +60,8 @@
   }
 }
 
+.conversation-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

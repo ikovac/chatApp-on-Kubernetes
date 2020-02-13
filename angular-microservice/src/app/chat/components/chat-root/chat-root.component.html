@@ -1,7 +1,7 @@
 <div class="chat-box-wrapper">
   <div class="chat-box">
-    <app-conversation-list [conversationList]="conversationList"></app-conversation-list>
-    <app-conversation></app-conversation>
+    <app-conversation-list [conversationList]="conversationList" (emitConversationSelect)="onConversationSelectEmit($event)"></app-conversation-list>
+    <app-conversation [selectedConversation]="selectedConversation"></app-conversation>
   </div>
 </div>
 

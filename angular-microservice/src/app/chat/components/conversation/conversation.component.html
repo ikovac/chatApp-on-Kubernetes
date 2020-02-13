@@ -1,8 +1,12 @@
-<div *ngIf="conversation" class="conversation-selected">
-  test
+<div *ngIf="selectedConversation" class="conversation-selected">
+  <div class="conversation-wrapper">
+    <app-conversation-header-part [friendName]="selectedConversation.friend_name"></app-conversation-header-part>
+    <app-conversation-messages-part [messages]="selectedConversation.msgs"></app-conversation-messages-part>
+    <app-conversation-input-part></app-conversation-input-part>
+  </div>
 </div>
 
-<div *ngIf="!conversation" class="conversation-not-selected">
+<div *ngIf="!selectedConversation" class="conversation-not-selected">
   <div class="welcome-img-wrapper">
     <img src="../../../../assets/images/welcome-img.png" alt="welcome img">
   </div>

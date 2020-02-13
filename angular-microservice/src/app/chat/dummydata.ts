@@ -61,30 +61,33 @@ export const conversationList = [
   },
 ];
 
-export const dummyConversation = [
-  {
-    msg_out: true,
-    msg_text: 'Živaaaaanaaa ljubavi mojaaa',
-    datetime: '15:03'
-  },
-  {
-    msg_out: false,
-    msg_text: 'Nediljko rodee',
-    datetime: '15:04'
-  },
-  {
-    msg_out: false,
-    msg_text: 'Ljubii te baka Živana u oko.',
-    datetime: '15:04'
-  },
-  {
-    msg_out: true,
-    msg_text: 'Bako ocemo li slusat Metaliku ?',
-    datetime: '15:05'
-  },
-  {
-    msg_out: false,
-    msg_text: 'Baba ce ti udrit seen.',
-    datetime: '15:05'
-  },
-];
+export const dummyConversation = {
+  friend_name: 'Baka Bakić',
+  msgs: [
+    {
+      msg_out: true,
+      msg_text: 'Živaaaaanaaa ljubavi mojaaa',
+      datetime: '15:03'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Nediljko rodee',
+      datetime: '15:04'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Ljubii te baka Živana u oko.',
+      datetime: '15:04'
+    },
+    {
+      msg_out: true,
+      msg_text: 'Bako ocemo li slusat Metaliku ?',
+      datetime: '15:05'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Baba ce ti udrit seen.',
+      datetime: '15:05'
+    },
+  ]
+};

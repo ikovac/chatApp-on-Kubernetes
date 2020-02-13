@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketIoService } from '../../services/socket-io.service';
-import {conversationList} from '../../dummydata';
+import {conversationList, dummyConversation} from '../../dummydata';
 
 @Component({
   selector: 'app-chat-root',
@@ -8,7 +8,8 @@ import {conversationList} from '../../dummydata';
   styleUrls: ['./chat-root.component.scss']
 })
 export class ChatRootComponent implements OnInit {
-  conversationList = conversationList;
+  conversationList = conversationList; // dohvati se tako da se posalje request serveru.
+  selectedConversation; // kada se klikne na neki razgovor ucitaj taj razgovor tako da posaljes request na server.
 
   constructor(private socketService: SocketIoService) { }
 
@@ -16,5 +17,9 @@ export class ChatRootComponent implements OnInit {
     /* this.socketService.onMsg().subscribe(msg => {
       console.log(msg);
     }); */
+  }
+
+  onConversationSelectEmit(somedata) {
+    this.selectedConversation = dummyConversation;
   }
 }

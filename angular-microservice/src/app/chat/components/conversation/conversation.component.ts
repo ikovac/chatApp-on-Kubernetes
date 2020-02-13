@@ -6,7 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./conversation.component.scss']
 })
 export class ConversationComponent implements OnInit {
-  @Input() conversation;
+  @Input() selectedConversation;
 
   constructor() { }
 

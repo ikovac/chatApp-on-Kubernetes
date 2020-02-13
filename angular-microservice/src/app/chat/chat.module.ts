@@ -8,6 +8,9 @@ import { ConversationListComponent } from './components/conversation-list/conver
 import { ConversationListComponentComponent } from './components/conversation-list-component/conversation-list-component.component';
 import { MessageButtonsSectionComponent } from './components/message-buttons-section/message-buttons-section.component';
 import { AngularMaterialModule } from '../angular-material.module';
+import { ConversationHeaderPartComponent } from './components/conversation-header-part/conversation-header-part.component';
+import { ConversationMessagesPartComponent } from './components/conversation-messages-part/conversation-messages-part.component';
+import { ConversationInputPartComponent } from './components/conversation-input-part/conversation-input-part.component';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { AngularMaterialModule } from '../angular-material.module';
     ConversationComponent,
     ConversationListComponent,
     ConversationListComponentComponent,
-    MessageButtonsSectionComponent
+    MessageButtonsSectionComponent,
+    ConversationHeaderPartComponent,
+    ConversationMessagesPartComponent,
+    ConversationInputPartComponent
   ],
   imports: [
     CommonModule,
