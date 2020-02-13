@@ -1,3 +1,37 @@
 :host {
   flex-grow: 1;
+  overflow: none;
+  position: relative;
+  width: 100%;
+  z-index: 5;
+}
+
+.messages-wrapper {
+  overflow-y: scroll;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.messages-wrapper::-webkit-scrollbar {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+/* Track */
+.messages-wrapper::-webkit-scrollbar-track {
+  background: hsla(0, 0%, 100%, 0.08);
+}
+
+/* Handle */
+.messages-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.message {
+  border: 1px solid #e2e4e3;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 10px;
 }
