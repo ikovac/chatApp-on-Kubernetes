@@ -1,5 +1,13 @@
 <div class="messages-wrapper">
-  <div class="message" *ngFor="let message of messages">
+  <div
+    *ngFor="let message of messages"
+    [ngClass]="{
+      'message-out': message.msg_out,
+      'message-in': !message.msg_out,
+      message: true
+    }"
+  >
+    <span *ngIf="!message.msg_out">{{ message.sender }}</span>
     {{ message.msg_text }}
   </div>
 </div>

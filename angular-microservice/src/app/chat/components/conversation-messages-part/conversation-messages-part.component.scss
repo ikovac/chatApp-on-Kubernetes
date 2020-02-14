@@ -7,10 +7,13 @@
 }
 
 .messages-wrapper {
-  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
   position: absolute;
-  bottom: 0;
+  top: 0;
   width: 100%;
 }
 
@@ -31,7 +34,34 @@
 
 .message {
   border: 1px solid #e2e4e3;
-  border-radius: 5px;
-  margin: 5px;
-  padding: 10px;
+  margin: 20px;
+  padding: 6px 7px 8px 9px;
+  border-radius: 7.5px;
+  color: #303030;
+  flex: none;
+  font-size: 14.2px;
+  line-height: 19px;
+  position: relative;
+  box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+  margin-left: 7%;
+  margin-right: 7%;
+}
+
+.message-out {
+  background-color: #dcf8c6;
+  align-self: flex-end;
+}
+
+.message-in {
+  background-color: #fff;
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  span {
+    font-size: 12.8px;
+    font-weight: 500;
+    line-height: 22px;
+  }
 }
