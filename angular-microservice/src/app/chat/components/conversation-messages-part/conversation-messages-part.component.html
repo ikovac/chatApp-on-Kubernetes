@@ -7,7 +7,11 @@
       message: true
     }"
   >
-    <span *ngIf="!message.msg_out">{{ message.sender }}</span>
-    {{ message.msg_text }}
+    <div class="txt">
+      <!-- <p class="name">Benni</p> -->
+      <p class="message-text">{{ message.msg_text }}</p>
+      <span class="timestamp">{{ message.datetime }}</span>
+    </div>
+    <div class="bubble-arrow"></div>
   </div>
 </div>
