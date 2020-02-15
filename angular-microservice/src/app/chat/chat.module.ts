@@ -11,6 +11,7 @@ import { AngularMaterialModule } from '../angular-material.module';
 import { ConversationHeaderPartComponent } from './components/conversation-header-part/conversation-header-part.component';
 import { ConversationMessagesPartComponent } from './components/conversation-messages-part/conversation-messages-part.component';
 import { ConversationInputPartComponent } from './components/conversation-input-part/conversation-input-part.component';
+import { ConversationNotSelectedComponent } from './components/conversation-not-selected/conversation-not-selected.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ConversationInputPartComponent } from './components/conversation-input-
     MessageButtonsSectionComponent,
     ConversationHeaderPartComponent,
     ConversationMessagesPartComponent,
-    ConversationInputPartComponent
+    ConversationInputPartComponent,
+    ConversationNotSelectedComponent
   ],
   imports: [
     CommonModule,
