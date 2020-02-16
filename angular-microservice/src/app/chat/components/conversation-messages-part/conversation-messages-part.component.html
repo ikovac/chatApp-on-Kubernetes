@@ -1,4 +1,4 @@
-<div class="messages-wrapper">
+<div class="messages-wrapper" #scrollElement [scrollTop]="scrollElement.scrollHeight">
   <div
     *ngFor="let message of messages"
     [ngClass]="{

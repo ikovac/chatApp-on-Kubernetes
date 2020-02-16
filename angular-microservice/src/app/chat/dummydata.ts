@@ -91,5 +91,69 @@ export const dummyConversation = {
       msg_text: 'Vidimo se :)',
       datetime: '15:05'
     },
+    {
+      msg_out: true,
+      sender: 'Ivo Ivić',
+      msg_text: 'Odgovara li ti sutra u 9?',
+      datetime: '15:04'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Naravno!',
+      datetime: '15:05'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Vidimo se :)',
+      datetime: '15:05'
+    },
+    {
+      msg_out: true,
+      sender: 'Ivo Ivić',
+      msg_text: 'Odgovara li ti sutra u 9?',
+      datetime: '15:04'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Naravno!',
+      datetime: '15:05'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Vidimo se :)',
+      datetime: '15:05'
+    },
+    {
+      msg_out: true,
+      sender: 'Ivo Ivić',
+      msg_text: 'Odgovara li ti sutra u 9?',
+      datetime: '15:04'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Naravno!',
+      datetime: '15:05'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Vidimo se :)',
+      datetime: '15:05'
+    },
+    {
+      msg_out: true,
+      sender: 'Ivo Ivić',
+      msg_text: 'Odgovara li ti sutra u 9?',
+      datetime: '15:04'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Naravno!',
+      datetime: '15:05'
+    },
+    {
+      msg_out: false,
+      msg_text: 'Vidimo se :)',
+      datetime: '15:05'
+    },
   ]
 };
