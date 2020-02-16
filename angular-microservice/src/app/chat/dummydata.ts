@@ -1,181 +1,94 @@
 export const conversationList = [
   {
     friend_name: 'Ivo Ivic',
-    last_msg: 'Okey, np bro!',
-    datetime: '11:28'
+    last_msg: 'Vidimo se :)',
+    datetime: '15:05'
   },
   {
     friend_name: 'Mate Matic',
-    last_msg: 'Hello, my name is Mate and i came from Alabama.',
+    last_msg: 'Yeah, i used to surf too...',
     datetime: 'jučer'
   },
   {
     friend_name: 'Frano Franic',
-    last_msg: 'There will be a lot of fishs.',
+    last_msg: 'Maybe he is bussy atm',
     datetime: 'jučer'
   },
   {
     friend_name: 'Ivo Ivic',
-    last_msg: 'Okey, np bro!',
-    datetime: '11:28'
+    last_msg: 'Vidimo se :)',
+    datetime: '15:05'
   },
   {
     friend_name: 'Mate Matic',
-    last_msg: 'Hello, my name is Mate and i came from Alabama.',
+    last_msg: 'Yeah, i used to surf too...',
     datetime: 'jučer'
   },
   {
     friend_name: 'Frano Franic',
-    last_msg: 'There will be a lot of fishs.',
+    last_msg: 'Maybe he is bussy atm',
     datetime: 'jučer'
   },
   {
     friend_name: 'Ivo Ivic',
-    last_msg: 'Okey, np bro!',
-    datetime: '11:28'
+    last_msg: 'Vidimo se :)',
+    datetime: '15:05'
   },
   {
     friend_name: 'Mate Matic',
-    last_msg: 'Hello, my name is Mate and i came from Alabama.',
+    last_msg: 'Yeah, i used to surf too...',
     datetime: 'jučer'
   },
   {
     friend_name: 'Frano Franic',
-    last_msg: 'There will be a lot of fishs.',
+    last_msg: 'Maybe he is bussy atm',
     datetime: 'jučer'
   },
   {
     friend_name: 'Ivo Ivic',
-    last_msg: 'Okey, np bro!',
-    datetime: '11:28'
+    last_msg: 'Vidimo se :)',
+    datetime: '15:05'
   },
   {
     friend_name: 'Mate Matic',
-    last_msg: 'Hello, my name is Mate and i came from Alabama.',
+    last_msg: 'Yeah, i used to surf too...',
     datetime: 'jučer'
   },
   {
     friend_name: 'Frano Franic',
-    last_msg: 'There will be a lot of fishs.',
+    last_msg: 'Maybe he is bussy atm',
     datetime: 'jučer'
   },
 ];
 
 export const dummyConversation = {
-  friend_name: 'Baka Bakić',
+  friend_name: 'Ivo Ivić',
   msgs: [
     {
       msg_out: true,
-      sender: 'Baka Bakić',
+      sender: 'Ivo Ivić',
       msg_text: 'Prva poruka',
       datetime: '15:03'
     },
     {
       msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Nediljko rodee',
-      datetime: '15:04'
-    },
-    {
-      msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Ljubii te baka Živana u oko.',
+      msg_text: 'Odgovor na prvu poruku',
       datetime: '15:04'
     },
     {
       msg_out: true,
-      sender: 'Baka Bakić',
-      msg_text: 'Bako ocemo li slusat Metaliku ?',
-      datetime: '15:05'
-    },
-    {
-      msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Baba ce ti udrit seen.',
-      datetime: '15:05'
-    },
-    {
-      msg_out: true,
-      sender: 'Baka Bakić',
-      msg_text: 'Živaaaaanaaa ljubavi mojaaa',
-      datetime: '15:03'
-    },
-    {
-      msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Nediljko rodee',
+      sender: 'Ivo Ivić',
+      msg_text: 'Odgovara li ti sutra u 9?',
       datetime: '15:04'
     },
     {
       msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Ljubii te baka Živana u oko.',
-      datetime: '15:04'
-    },
-    {
-      msg_out: true,
-      sender: 'Baka Bakić',
-      msg_text: 'Bako ocemo li slusat Metaliku ?',
+      msg_text: 'Naravno!',
       datetime: '15:05'
     },
     {
       msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Baba ce ti udrit seen.',
-      datetime: '15:05'
-    },
-    {
-      msg_out: true,
-      sender: 'Baka Bakić',
-      msg_text: 'Živaaaaanaaa ljubavi mojaaa',
-      datetime: '15:03'
-    },
-    {
-      msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Ljubii te baka Živana u oko.',
-      datetime: '15:04'
-    },
-    {
-      msg_out: true,
-      sender: 'Baka Bakić',
-      msg_text: 'Bako ocemo li slusat Metaliku ?',
-      datetime: '15:05'
-    },
-    {
-      msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Baba ce ti udrit seen.',
-      datetime: '15:05'
-    },
-    {
-      msg_out: true,
-      sender: 'Baka Bakić',
-      msg_text: 'Živaaaaanaaa ljubavi mojaaa',
-      datetime: '15:03'
-    },
-    {
-      msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Nediljko rodee',
-      datetime: '15:04'
-    },
-    {
-      msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Ljubii te baka Živana u oko.',
-      datetime: '15:04'
-    },
-    {
-      msg_out: true,
-      sender: 'Baka Bakić',
-      msg_text: 'Bako ocemo li slusat Metaliku ?',
-      datetime: '15:05'
-    },
-    {
-      msg_out: false,
-      sender: 'Baka Bakić',
-      msg_text: 'Zadnja poruka.',
+      msg_text: 'Vidimo se :)',
       datetime: '15:05'
     },
   ]

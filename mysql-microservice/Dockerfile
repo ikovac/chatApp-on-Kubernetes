@@ -5,7 +5,7 @@ ENV MYSQL_USER=ivo
 ENV MYSQL_PASSWORD=admin
 ENV MYSQL_DATABASE=chatapp
 
-COPY ./sql /docker-entrypoint-initdb.d
+# COPY ./sql /docker-entrypoint-initdb.d
 
 
 

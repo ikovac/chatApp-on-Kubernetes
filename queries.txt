@@ -1,0 +1,16 @@
+DOHVACANJE SVIH ZADNJIH PORUKA TOG I TOG USERA: 
+
+SELECT * FROM message WHERE id IN (SELECT MAX(id) FROM message WHERE conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 3) GROUP BY conversationId);
+
+ISTO KAO I PRETHODNO SAMO I INNER JOIN DA SE VIDI USER NAME:
+SELECT * FROM message as outer_table INNER JOIN user ON outer_table.userId = user.id WHERE outer_table.id IN (SELECT MAX(message.id) FROM message WHERE message.conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 3) GROUP BY conversationId);
+
+SLICNO KAO I PRETHODNO SAMO ONO STA MENI TREBA JER PRIKAZUJE IME USERA ZA IME RZGOVORA:
+SELECT * FROM message as outer_table LEFT JOIN conversation_users_user ON outer_table.conversationId = conversation_users_user.conversationId LEFT JOIN user ON conversation_users_user.userId = user.id WHERE outer_table.id IN (SELECT MAX(id) FROM message WHERE conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 1) GROUP BY conversationId) AND conversation_users_user.userId != 1;
+
+QUERY KOJI RADI I SA GRUPOM:
+SELECT * FROM message as outer_table LEFT JOIN conversation_users_user ON outer_table.conversationId = conversation_users_user.conversationId LEFT JOIN user ON conversation_users_user.userId = user.id LEFT JOIN conversation ON outer_table.conversationId = conversation.id WHERE outer_table.id IN (SELECT MAX(id) FROM message WHERE conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 1) GROUP BY conversationId) AND conversation_users_user.userId != 1;
+
+SAMO PODACI KOJI TREBAJU: 
+SELECT message_text, timestamp, is_group, group_name, first_name, last_name, outer_table.coionId FROM message as outer_table LEFT JOIN conversation_users_user ON outer_table.conversationId = conversation_users_user.conversationId LEFT JOIN user ON conversation_users_user.userId = user.id LEFT JOIN conversation ON outer_table.conversationId = conversation.id WHERE outer_table.id IN (SELECT MAX(id) FROM message WHERE conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 1) GROUP BY conversationId) AND conversation_users_user.userId != 1;
+
