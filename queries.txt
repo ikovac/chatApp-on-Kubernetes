@@ -12,5 +12,23 @@ QUERY KOJI RADI I SA GRUPOM:
 SELECT * FROM message as outer_table LEFT JOIN conversation_users_user ON outer_table.conversationId = conversation_users_user.conversationId LEFT JOIN user ON conversation_users_user.userId = user.id LEFT JOIN conversation ON outer_table.conversationId = conversation.id WHERE outer_table.id IN (SELECT MAX(id) FROM message WHERE conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 1) GROUP BY conversationId) AND conversation_users_user.userId != 1;
 
 SAMO PODACI KOJI TREBAJU: 
-SELECT message_text, timestamp, is_group, group_name, first_name, last_name, outer_table.coionId FROM message as outer_table LEFT JOIN conversation_users_user ON outer_table.conversationId = conversation_users_user.conversationId LEFT JOIN user ON conversation_users_user.userId = user.id LEFT JOIN conversation ON outer_table.conversationId = conversation.id WHERE outer_table.id IN (SELECT MAX(id) FROM message WHERE conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 1) GROUP BY conversationId) AND conversation_users_user.userId != 1;
+SELECT message_text, timestamp, is_group, group_name, first_name, last_name, outer_table.conversationId FROM message as outer_table LEFT JOIN conversation_users_user ON outer_table.conversationId = conversation_users_user.conversationId LEFT JOIN user ON conversation_users_user.userId = user.id LEFT JOIN conversation ON outer_table.conversationId = conversation.id WHERE outer_table.id IN (SELECT MAX(id) FROM message WHERE conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 1) GROUP BY conversationId) AND conversation_users_user.userId != 1;
 
+Na tragu:
+select distinct message.id from message LEFT JOIN conversation ON message.conversationId = conversation.id LEFT JOIN conversation_users_user ON message.conversationId = conversation_users_user.conversationId LEFT JOIN user ON conversation_users_user.userId = user.id WHERE conversation_users_user.userId != 3 AND message.id IN (SELECT MAX(id) FROM message WHERE conversationId IN(SELECT conversationId FROM conversation_users_user WHERE userId = 3) GROUP BY conversationId);
+...
+select distinct message.id from message LEFT JOIN conversation_users_user ON message.conversationId = conversation_users_user.conversationId  WHERE conversation_users_user.userId != 3 AND message.id IN (SELECT MAX(id) FROM message WHERE conversationId IN(SELECT conversationId FROM conversation_users_user WHERE userId = 3) GROUP BY conversationId);
+
+
+SELECTA SVE ZADNJE PORUKE BEZ IKAKVIH JOINOVA:
+SELECT * from message WHERE message.id IN ( SELECT MAX(id) FROM message GROUP BY conversationId);
+
+PRIKAzUJE DOBRO ZADNJE PORUKE I NAZIV GRUPE AKO JE GRUPA:
+SELECT * from message LEFT JOIN conversation ON message.conversationId = conversation.id  WHERE message.id IN ( SELECT MAX(id) FROM message GROUP BY conversationId);
+
+
+AMO REC DA RADI IAKO JE UPITNO AKO BUDU ISTE PORUKE:
+SELECT distinct m.id,  m.message_text, m.timestamp,  m.conversationId, CASE WHEN c.is_group = 1 THEN c.group_name ELSE CONCAT(u.first_name,' ', u.last_name) END as conversation_name FROM message m LEFT JOIN conversation c ON m.conversationId = c.id LEFT JOIN conversation_users_user cu ON m.conversationId = cu.conversationId LEFT JOIN user u ON cu.userId = u.id WHERE m.id IN (SELECT MAX(id) FROM message WHERE conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 3) GROUP BY conversationId) AND cu.userId != 3;
+
+ISTO KAO I PRETHODNO SAMO DODAN I ORDERBY:
+SELECT distinct m.id,  m.message_text, m.timestamp,  m.conversationId, CASE WHEN c.is_group = 1 THEN c.group_name ELSE CONCAT(u.first_name,' ', u.last_name) END as conversation_name FROM message m LEFT JOIN conversation c ON m.conversationId = c.id LEFT JOIN conversation_users_user cu ON m.conversationId = cu.conversationId LEFT JOIN user u ON cu.userId = u.id WHERE m.id IN (SELECT MAX(id) FROM message WHERE conversationId IN (SELECT conversationId FROM conversation_users_user WHERE userId = 3) GROUP BY conversationId) AND cu.userId != 3 ORDER BY m.id DESC;
