@@ -1,6 +1,6 @@
 <app-message-buttons-section></app-message-buttons-section>
 <div class="conversation-list-wrapper">
-  <div class="conversat222ion-list-element" *ngFor="let conversation_summary of conversationList" (click)="onConversationSelect(conversation_summary)">
+  <div class="conversation-list-element" *ngFor="let conversation_summary of conversationList" (click)="onConversationSelect(conversation_summary)">
     <app-conversation-list-component [chatSummaryComponent]="conversation_summary"></app-conversation-list-component>
   </div>
 </div>

@@ -35,4 +35,11 @@ export class LoginService {
     const token = this.cookieService.get('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
+
+  getLoggedInUser(): IUser {
+    const token = this.cookieService.get('token');
+
+    const user = this.jwtHelper.decodeToken(token);
+    return user ? user : null;
+  }
 }

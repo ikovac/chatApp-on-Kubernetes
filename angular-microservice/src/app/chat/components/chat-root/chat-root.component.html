@@ -1,6 +1,6 @@
 <div class="chat-box-wrapper">
   <div class="chat-box">
-    <app-conversation-list [conversationList]="conversationList" (emitConversationSelect)="onConversationSelectEmit($event)"></app-conversation-list>
+    <app-conversation-list [conversationList]="conversationList$ | async" (emitConversationSelect)="onConversationSelectEmit($event)"></app-conversation-list>
     <app-conversation [selectedConversation]="selectedConversation" *ngIf="selectedConversation"></app-conversation>
     <app-conversation-not-selected *ngIf="!selectedConversation"></app-conversation-not-selected>
   </div>

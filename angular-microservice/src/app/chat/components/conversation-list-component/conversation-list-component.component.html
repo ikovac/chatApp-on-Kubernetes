@@ -5,13 +5,13 @@
 <div class="aside-part">
   <div class="top-part">
     <div class="friend-name">
-      <span>{{ chatSummaryComponent.friend_name }}</span>
+      <span>{{ chatSummaryComponent.conversation_name }}</span>
     </div>
     <div class="time-section">
-      <span>{{ chatSummaryComponent.datetime }}</span>
+      <span>{{ timeSectionFormatter(chatSummaryComponent.timestamp) }}</span>
     </div>
   </div>
   <div class="last-msg-wrapper">
-    <span class="last-msg-text">{{ chatSummaryComponent.last_msg }}</span>
+    <span class="last-msg-text">{{ chatSummaryComponent.message_text }}</span>
   </div>
 </div>

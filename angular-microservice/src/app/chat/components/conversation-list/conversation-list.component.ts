@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { IConversationListElement } from 'src/app/shared/interfaces/iconversationlistelement';
 
 @Component({
   selector: 'app-conversation-list',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./conversation-list.component.scss']
 })
 export class ConversationListComponent implements OnInit {
-  @Input() conversationList;
+  @Input() conversationList: IConversationListElement[];
   @Output() emitConversationSelect = new EventEmitter<any>();
 
   constructor() { }
