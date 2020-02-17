@@ -8,9 +8,9 @@
 
   <section class="add-info">
     <div class="friend-name">
-      <span>{{ friendName }}</span>
+      <span>{{ selectedConversation.conversation_name }}</span>
     </div>
-    <div class="online-status">
+    <div class="online-status" *ngIf="!selectedConversation.is_group">
       <span>na vezi</span>
     </div>
   </section>

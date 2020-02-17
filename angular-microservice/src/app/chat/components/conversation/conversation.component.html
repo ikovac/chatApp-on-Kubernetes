@@ -1,6 +1,6 @@
 <div class="conversation-selected">
   <div class="conversation-wrapper">
-    <app-conversation-header-part [friendName]="selectedConversation?.friend_name"></app-conversation-header-part>
+    <app-conversation-header-part [selectedConversation]="selectedConversation"></app-conversation-header-part>
     <app-conversation-messages-part [messages]="selectedConversation?.msgs"></app-conversation-messages-part>
     <app-conversation-input-part></app-conversation-input-part>
   </div>

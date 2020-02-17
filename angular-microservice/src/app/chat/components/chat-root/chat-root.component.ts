@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketIoService } from '../../services/socket-io.service';
-import {dummyConversation} from '../../dummydata';
 import { ChatService } from '../../services/chat.service';
 import { Observable } from 'rxjs';
 import { IConversationListElement } from 'src/app/shared/interfaces/iconversationlistelement';
@@ -27,7 +26,7 @@ export class ChatRootComponent implements OnInit {
     this.conversationList$ = this.chatService.getAllUserConversations();
   }
 
-  onConversationSelectEmit(somedata) {
-    this.selectedConversation = dummyConversation;
+  onConversationSelectEmit(selectedConversation) {
+    this.selectedConversation = selectedConversation;
   }
 }

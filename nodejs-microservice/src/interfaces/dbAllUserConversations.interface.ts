@@ -4,4 +4,5 @@ export interface dbAllUserConversations {
     timestamp: Date;
     conversation_name: string;
     conversationId: number;
+    is_group: boolean;
 }
