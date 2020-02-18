@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, NgZone } from '@angular/core';
 import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMessage';
 
 @Component({
@@ -9,7 +9,7 @@ import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMes
 export class ConversationMessagesPartComponent implements OnInit {
   @Input() messages: IConversationMessage[];
 
-  constructor() { }
+  constructor(private zone: NgZone) { }
 
   ngOnInit() {
   }
@@ -38,9 +38,11 @@ export class ConversationMessagesPartComponent implements OnInit {
   }
 
   getElementHeight(element) {
-    setTimeout(() => {
-      return element;
-    }, 0);
+    this.zone.runOutsideAngular(() => {
+      setTimeout(() => {
+        return element;
+      }, 0);
+    });
   }
 
 }
