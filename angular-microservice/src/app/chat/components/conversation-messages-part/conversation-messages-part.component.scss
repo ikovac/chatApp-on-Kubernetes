@@ -40,7 +40,7 @@
   width: 100%;
   .message {
     border: 1px solid #e2e4e3;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
     padding: 6px 7px 8px 9px;
     box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
     margin-left: 7%;
@@ -81,7 +81,6 @@
         position: absolute;
         bottom: 8px;
         right: 10px;
-        text-transform: uppercase;
         color: #999;
       }
     }

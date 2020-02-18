@@ -1,16 +1,18 @@
-<div class="messages-wrapper" #scrollElement [scrollTop]="scrollElement.scrollHeight">
+<div
+  class="messages-wrapper"
+  #scrollElement
+  [scrollTop]="getElementHeight(scrollElement.scrollHeight)"
+>
   <div
     *ngFor="let message of messages"
-    [ngClass]="{
-      'message-out': message.msg_out,
-      'message-in': !message.msg_out,
-      message: true
-    }"
+    class="{{ message.message_class }} message"
   >
     <div class="txt">
-      <!-- <p class="name">Benni</p> -->
-      <p class="message-text">{{ message.msg_text }}</p>
-      <span class="timestamp">{{ message.datetime }}</span>
+      <p *ngIf="message.is_group" class="name">{{ message.sender }}</p>
+      <p class="message-text">{{ message.message_text }}</p>
+      <span class="timestamp">{{
+        timeSectionFormatter(message.timestamp)
+      }}</span>
     </div>
     <div class="bubble-arrow"></div>
   </div>
