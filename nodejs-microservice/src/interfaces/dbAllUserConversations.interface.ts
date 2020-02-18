@@ -1,4 +1,4 @@
-export interface dbAllUserConversations {
+export interface IDbAllUserConversations {
     id: number;
     message_text: string;
     timestamp: Date;
