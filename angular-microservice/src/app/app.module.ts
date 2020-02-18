@@ -14,6 +14,9 @@ import { environment } from 'src/environments/environment';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
+import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
+import { reducers } from './ngrx/reducers/root.reducers';
+
 export function jwtOptionsFactory(cookieService) {
   return {
     tokenGetter: () => {
@@ -26,6 +29,18 @@ export const socketConfig: SocketIoConfig = {
   url: environment.serverUrl,
   options: {}
 };
+
+// console.log all actions
+export function debug(reducer: ActionReducer<any>): ActionReducer<any> {
+  return (state, action) => {
+    console.log('state', state);
+    console.log('action', action);
+
+    return reducer(state, action);
+  };
+}
+
+export const metaReducers: MetaReducer<any>[] = [debug];
 
 @NgModule({
   declarations: [
@@ -47,6 +62,7 @@ export const socketConfig: SocketIoConfig = {
       }
     }),
     SocketIoModule.forRoot(socketConfig),
+    StoreModule.forRoot(reducers, { metaReducers }),
   ],
   providers: [CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
