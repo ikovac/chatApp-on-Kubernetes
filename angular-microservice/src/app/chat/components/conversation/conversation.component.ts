@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMessage';
 import { ChatService } from '../../services/chat.service';
 import { IConversationListElement } from 'src/app/shared/interfaces/iconversationlistelement';
+import { selectSelectedConversation } from 'src/app/ngrx/selectors/chat-app.selectors';
 
 @Component({
   selector: 'app-conversation',

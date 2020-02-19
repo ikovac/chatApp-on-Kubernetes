@@ -22,7 +22,10 @@ const _chatAppReducer = createReducer(
   initialChatAppState,
   on(
     chatAppActions.setInitialConversationList,
-    (state, { conversationList }) => ({ ...state, conversationList }))
+    (state, { conversationList }) => ({ ...state, conversationList })),
+  on(
+    chatAppActions.selectConversation,
+    (state, { selectedConversation }) => ({ ...state, selectedConversation }))
 );
 
 export function chatAppReducer(state, action) {
