@@ -1,9 +1,12 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMessage';
 import { ChatService } from '../../services/chat.service';
 import { IConversationListElement } from 'src/app/shared/interfaces/iconversationlistelement';
-import { selectSelectedConversation } from 'src/app/ngrx/selectors/chat-app.selectors';
+import { searchForConversation } from 'src/app/ngrx/selectors/chat-app.selectors';
+import { Store, select } from '@ngrx/store';
+import { IAppState } from 'src/app/ngrx/reducers/chat-app.reducers';
+import { storeConversationMessages } from 'src/app/ngrx/actions/chat-app.actions';
 
 @Component({
   selector: 'app-conversation',
@@ -11,19 +14,37 @@ import { selectSelectedConversation } from 'src/app/ngrx/selectors/chat-app.sele
   styleUrls: ['./conversation.component.scss'],
   // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ConversationComponent implements OnInit, OnChanges {
+export class ConversationComponent implements OnInit, OnChanges, OnDestroy {
   @Input() selectedConversation: IConversationListElement;
+  messages: IConversationMessage[];
+  storeSubscription: Subscription;
+  apiSubscription: Subscription;
 
-  messages$: Observable<IConversationMessage[]>;
-
-  constructor(private chatService: ChatService) { }
+  constructor(
+    private chatService: ChatService,
+    private store: Store<IAppState>
+  ) { }
 
   ngOnInit() {
+
   }
 
   ngOnChanges() {
-    this.messages$ = this.chatService.getConversationMessages(this.selectedConversation.conversationId);
+    const { conversationId } = this.selectedConversation;
+    this.store.pipe(select(searchForConversation, { conversationId })).subscribe(storeRes => {
+      if (!storeRes) {
+        this.chatService.getConversationMessages(conversationId).subscribe(res => {
+          this.messages = res;
+          this.store.dispatch(storeConversationMessages({convMessages: res, conversationId}));
+        });
+      } else {
+        this.messages = storeRes;
+      }
+    });
   }
 
-
+  ngOnDestroy() {
+    this.storeSubscription.unsubscribe();
+    this.apiSubscription.unsubscribe();
+  }
 }

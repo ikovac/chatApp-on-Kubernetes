@@ -63,7 +63,7 @@ export const metaReducers: MetaReducer<any>[] = [debug];
       }
     }),
     SocketIoModule.forRoot(socketConfig),
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers),
   ],
   providers: [CookieService],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

@@ -4,5 +4,8 @@ export const selectConversationList = (state: IAppState) => state.chatApp.conver
 
 export const selectSelectedConversation = (state: IAppState) => state.chatApp.selectedConversation;
 
-// export const searchForConversation = (state: IAppState) => state.chatApp.conversationMessages;
+export const searchForConversation = (state: IAppState, props) => {
+  const { conversationId } = props;
+  return state.chatApp.conversationMessages[conversationId];
+};
 

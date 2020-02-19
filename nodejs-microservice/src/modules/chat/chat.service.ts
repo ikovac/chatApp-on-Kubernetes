@@ -20,7 +20,7 @@ export class ChatService {
 
     async getConversationMessages(userId: number, conversationId: number) {
         return await getConnection().query(`
-            SELECT m.id, m.message_text, m.timestamp, m.userId, c.is_group,
+            SELECT m.id, m.message_text, m.timestamp, m.userId, m.conversationId, c.is_group,
             CASE WHEN c.is_group = 1 THEN CONCAT(u.first_name, ' ', u.last_name) ELSE 0 END as sender,
             CASE WHEN m.userId = ? THEN 'message-out' ELSE 'message-in' END as message_class
             FROM message m

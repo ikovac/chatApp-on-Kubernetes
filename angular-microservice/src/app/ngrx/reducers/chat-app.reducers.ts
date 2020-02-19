@@ -25,7 +25,10 @@ const _chatAppReducer = createReducer(
     (state, { conversationList }) => ({ ...state, conversationList })),
   on(
     chatAppActions.selectConversation,
-    (state, { selectedConversation }) => ({ ...state, selectedConversation }))
+    (state, { selectedConversation }) => ({ ...state, selectedConversation })),
+  on(
+    chatAppActions.storeConversationMessages,
+    (state, { convMessages, conversationId }) => ({ ...state, conversationMessages: { ...state.conversationMessages, [conversationId]: convMessages } }))
 );
 
 export function chatAppReducer(state, action) {
