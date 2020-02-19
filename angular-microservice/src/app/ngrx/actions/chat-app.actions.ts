@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IConversationListElement } from 'src/app/shared/interfaces/iconversationlistelement';
-import { SET_INITIAL_CONVERSATION_LIST, SELECT_CONVERSATION, STORE_CONVERSATION_MESSAGES } from './action.types';
+import { SET_INITIAL_CONVERSATION_LIST, SELECT_CONVERSATION, STORE_CONVERSATION_MESSAGES, SAVE_NEW_MESSAGE_OUT } from './action.types';
 import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMessage';
 
 export const setInitialConversationList = createAction(
@@ -16,4 +16,9 @@ export const selectConversation = createAction(
 export const storeConversationMessages = createAction(
   STORE_CONVERSATION_MESSAGES,
   props<{ convMessages: IConversationMessage[], conversationId: number }>()
+);
+
+export const saveNewMessageOut = createAction(
+  SAVE_NEW_MESSAGE_OUT,
+  props<{ newMessageOut: IConversationMessage, selectedConversation: IConversationListElement }>()
 );

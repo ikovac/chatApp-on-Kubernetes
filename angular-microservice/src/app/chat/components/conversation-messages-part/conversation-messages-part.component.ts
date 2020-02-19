@@ -37,12 +37,4 @@ export class ConversationMessagesPartComponent implements OnInit {
     return `${dd}. ${mm}. ${yy}`;
   }
 
-  getElementHeight(element) {
-    this.zone.runOutsideAngular(() => {
-      setTimeout(() => {
-        return element;
-      }, 0);
-    });
-  }
-
 }

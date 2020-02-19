@@ -1,5 +1,5 @@
 export interface IConversationListElement {
-  id: number;
+  id?: number;
   message_text: string;
   timestamp: Date;
   conversation_name: string;

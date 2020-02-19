@@ -1,7 +1,7 @@
 <div
   class="messages-wrapper"
   #scrollElement
-  [scrollTop]="getElementHeight(scrollElement.scrollHeight)"
+  [scrollTop]="scrollElement.scrollHeight"
 >
   <div
     *ngFor="let message of messages"
