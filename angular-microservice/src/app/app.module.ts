@@ -15,7 +15,8 @@ import { environment } from 'src/environments/environment';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { StoreModule, ActionReducer, MetaReducer } from '@ngrx/store';
-import { reducers } from './ngrx/reducers/root.reducers';
+import { reducers } from './ngrx/reducers/chat-app.reducers';
+
 
 export function jwtOptionsFactory(cookieService) {
   return {

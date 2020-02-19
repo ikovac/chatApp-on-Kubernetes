@@ -4,9 +4,9 @@ import { ChatService } from '../../services/chat.service';
 import { Observable, Subscription } from 'rxjs';
 import { IConversationListElement } from 'src/app/shared/interfaces/iconversationlistelement';
 import { Store, select } from '@ngrx/store';
-import { IAppState } from 'src/app/ngrx/reducers/root.reducers';
-import { setInitialConversationList } from 'src/app/ngrx/actions/conversation-list.actions';
 import { selectConversationList } from 'src/app/ngrx/selectors/chat-app.selectors';
+import { IAppState } from 'src/app/ngrx/reducers/chat-app.reducers';
+import { setInitialConversationList } from 'src/app/ngrx/actions/chat-app.actions';
 
 @Component({
   selector: 'app-chat-root',
