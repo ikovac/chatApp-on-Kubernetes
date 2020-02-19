@@ -43,6 +43,10 @@ export class ConversationComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
+  onNewInputMessage(messageText) {
+
+  }
+
   ngOnDestroy() {
     this.storeSubscription.unsubscribe();
     this.apiSubscription.unsubscribe();

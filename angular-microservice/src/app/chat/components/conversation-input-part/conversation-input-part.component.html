@@ -1,10 +1,10 @@
-<div class="input-part-wrapper">
+<form class="input-part-wrapper" (keydown.enter)="onFormSubmit()">
   <div class="input-wrapper">
-      <input class="textarea" type="text" placeholder="Napišite poruku"/>
+      <input class="textarea" type="text" placeholder="Napišite poruku" [(ngModel)]="messageText" name="messageText" autocomplete="off"/>
   </div>
   <div class="icon-div">
-    <mat-icon aria-hidden="false" aria-label="Send icon" class="icon"
+    <mat-icon aria-hidden="false" aria-label="Send icon" class="icon" (click)="onFormSubmit()"
       >send</mat-icon
     >
   </div>
-</div>
+</form>

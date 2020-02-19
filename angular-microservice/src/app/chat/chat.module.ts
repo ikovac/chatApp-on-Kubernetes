@@ -12,6 +12,7 @@ import { ConversationHeaderPartComponent } from './components/conversation-heade
 import { ConversationMessagesPartComponent } from './components/conversation-messages-part/conversation-messages-part.component';
 import { ConversationInputPartComponent } from './components/conversation-input-part/conversation-input-part.component';
 import { ConversationNotSelectedComponent } from './components/conversation-not-selected/conversation-not-selected.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { ConversationNotSelectedComponent } from './components/conversation-not-
   imports: [
     CommonModule,
     ChatRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    FormsModule
   ],
   entryComponents: [ChatRootComponent]
 })
