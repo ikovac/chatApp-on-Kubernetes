@@ -30,8 +30,9 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   } */
 
   @SubscribeMessage('msg_out')
-  handleMessageOut(client: any, payload: any) {
-    this.server.emit('msg_in', payload);
+  handleMessageOut(socket: any, payload: any) {
+    // this.server.emit('msg_in', payload);
+    socket.broadcast.emit('msg_in', payload);
   }
 
 

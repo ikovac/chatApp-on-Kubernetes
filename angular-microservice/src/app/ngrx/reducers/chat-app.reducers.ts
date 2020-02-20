@@ -55,13 +55,14 @@ const _chatAppReducer = createReducer(
     chatAppActions.saveNewMessageIn,
     (state, { newMessageIn, newConversationListElement }) => {
       const { conversationId } = newConversationListElement;
+      const oldConversationListElement = state.conversationList.find(conv => conv.conversationId === conversationId);
       const updatedConversationList = state.conversationList.filter(conv => conv.conversationId !== conversationId);
-      updatedConversationList.unshift(newConversationListElement);
+      updatedConversationList.unshift({ ...newConversationListElement, conversation_name: oldConversationListElement.conversation_name });
 
       let oldConversationMessages = [];
       oldConversationMessages = state.conversationMessages[conversationId];
 
-      if(!oldConversationMessages) {
+      if (!oldConversationMessages) {
         return {
           ...state,
           conversationList: updatedConversationList
