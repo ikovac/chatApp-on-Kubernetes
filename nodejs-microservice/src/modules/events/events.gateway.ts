@@ -29,5 +29,10 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     console.log("New connection ", cookie.parse(client.handshake.headers.cookie).token);
   } */
 
+  @SubscribeMessage('msg_out')
+  handleMessageOut(client: any, payload: any) {
+    this.server.emit('msg_in', payload);
+  }
+
 
 }

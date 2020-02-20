@@ -34,12 +34,10 @@ const _chatAppReducer = createReducer(
   ),
   on(
     chatAppActions.saveNewMessageOut,
-    (state, { newMessageOut, selectedConversation }) => {
-      const { conversationId } = selectedConversation;
+    (state, { newMessageOut, newSelectedConversation }) => {
+      const { conversationId } = newSelectedConversation;
       const updatedConversationList = state.conversationList.filter(conv => conv.conversationId !== conversationId);
-      updatedConversationList.unshift(
-        { ...selectedConversation, message_text: newMessageOut.message_text, timestamp: newMessageOut.timestamp }
-      );
+      updatedConversationList.unshift(newSelectedConversation);
 
       let oldConversationMessages = [];
       oldConversationMessages = state.conversationMessages[conversationId];
@@ -53,6 +51,32 @@ const _chatAppReducer = createReducer(
       };
     }
   ),
+  on(
+    chatAppActions.saveNewMessageIn,
+    (state, { newMessageIn, newConversationListElement }) => {
+      const { conversationId } = newConversationListElement;
+      const updatedConversationList = state.conversationList.filter(conv => conv.conversationId !== conversationId);
+      updatedConversationList.unshift(newConversationListElement);
+
+      let oldConversationMessages = [];
+      oldConversationMessages = state.conversationMessages[conversationId];
+
+      if(!oldConversationMessages) {
+        return {
+          ...state,
+          conversationList: updatedConversationList
+        };
+      }
+
+      oldConversationMessages.push(newMessageIn);
+
+      return {
+        ...state,
+        conversationMessages: { ...state.conversationMessages, [conversationId]: oldConversationMessages },
+        conversationList: updatedConversationList
+      };
+    }
+  )
 );
 
 export function chatAppReducer(state, action) {

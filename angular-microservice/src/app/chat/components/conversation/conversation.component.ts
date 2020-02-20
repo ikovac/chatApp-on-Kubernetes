@@ -8,6 +8,7 @@ import { Store, select } from '@ngrx/store';
 import { IAppState } from 'src/app/ngrx/reducers/chat-app.reducers';
 import { storeConversationMessages, saveNewMessageOut } from 'src/app/ngrx/actions/chat-app.actions';
 import { LoginService } from 'src/app/login/login.service';
+import { SocketIoService } from '../../services/socket-io.service';
 
 @Component({
   selector: 'app-conversation',
@@ -25,6 +26,7 @@ export class ConversationComponent implements OnInit, OnChanges, OnDestroy {
     private chatService: ChatService,
     private store: Store<IAppState>,
     private loginService: LoginService,
+    private socketService: SocketIoService,
   ) { }
 
   ngOnInit() {
@@ -57,11 +59,18 @@ export class ConversationComponent implements OnInit, OnChanges, OnDestroy {
       userId: user.id,
     };
 
+    const newSelectedConversation = {
+      ...this.selectedConversation,
+      message_text: newMessageOut.message_text,
+      timestamp: newMessageOut.timestamp
+    };
+
     if (is_group) {
       newMessageOut.sender = user.first_name + ' ' + user.last_name;
     }
 
-    this.store.dispatch(saveNewMessageOut({ newMessageOut, selectedConversation: this.selectedConversation}));
+    this.store.dispatch(saveNewMessageOut({ newMessageOut, newSelectedConversation }));
+    this.socketService.emitMsgOut({ newMessageOut, newSelectedConversation });
   }
 
   ngOnDestroy() {
