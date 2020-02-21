@@ -8,7 +8,6 @@ import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { EventsModule } from './modules/events/events.module';
 import { ChatModule } from './modules/chat/chat.module';
-import { RedisClientService } from './redis-client.service';
 
 import config = require('./ormconfig');
 
@@ -24,6 +23,6 @@ const redisHost = process.env.NODEJS_REDIS_HOST || 'redis_microservice';
     ChatModule,
   ],
   controllers: [AppController],
-  providers: [AppService, RedisClientService],
+  providers: [AppService],
 })
 export class AppModule { }

@@ -11,7 +11,7 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule);
   app.useWebSocketAdapter(new RedisIoAdapter(app));
-  
+
   app.enableCors({
     origin: [process.env.NODEJS_CLIENT_HOST || 'http://localhost:4200'],
     credentials: true,

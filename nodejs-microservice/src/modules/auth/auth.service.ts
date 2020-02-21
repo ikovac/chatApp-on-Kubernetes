@@ -8,4 +8,8 @@ export class AuthService {
     async sign(payload): Promise<string> {
         return await this.jwtService.signAsync(payload);
     }
+
+    async unsign(payload) {
+        return await this.jwtService.decode(payload);
+    }
 }

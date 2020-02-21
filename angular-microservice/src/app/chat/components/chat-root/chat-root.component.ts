@@ -6,7 +6,7 @@ import { IConversationListElement } from 'src/app/shared/interfaces/iconversatio
 import { Store, select } from '@ngrx/store';
 import { selectConversationList, selectSelectedConversation } from 'src/app/ngrx/selectors/chat-app.selectors';
 import { IAppState } from 'src/app/ngrx/reducers/chat-app.reducers';
-import { setInitialConversationList, saveNewMessageIn } from 'src/app/ngrx/actions/chat-app.actions';
+import { setInitialConversationList, saveNewMessageIn, updateOnlineUsers } from 'src/app/ngrx/actions/chat-app.actions';
 import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMessage';
 
 @Component({
@@ -18,7 +18,8 @@ export class ChatRootComponent implements OnInit, OnDestroy {
   conversationList$: Observable<IConversationListElement[]>; // dohvati se tako da se posalje request serveru.
   selectedConversation$; // kada se klikne na neki razgovor ucitaj taj razgovor tako da posaljes request na server.
   apiSubscription: Subscription;
-  socketSubscription: Subscription;
+  socketMessageSubscription: Subscription;
+  socketOnlineUsersSubscription: Subscription;
 
   constructor(
     private socketService: SocketIoService,
@@ -34,14 +35,20 @@ export class ChatRootComponent implements OnInit, OnDestroy {
       this.store.dispatch(setInitialConversationList({ conversationList: res }));
     });
 
-    this.socketService.onMsg()
+    this.socketMessageSubscription = this.socketService.onMsg()
       .subscribe((payload: { newMessageIn: IConversationMessage, newConversationListElement: IConversationListElement }) => {
         this.store.dispatch(saveNewMessageIn(payload));
       });
+
+    this.socketOnlineUsersSubscription = this.socketService.onNewOnlineUserList()
+      .subscribe(
+        (onlineUsers: string[]) => this.store.dispatch(updateOnlineUsers({ onlineUsers }))
+      );
   }
 
   ngOnDestroy() {
     this.apiSubscription.unsubscribe();
-    this.socketSubscription.unsubscribe();
+    this.socketMessageSubscription.unsubscribe();
+    this.socketOnlineUsersSubscription.unsubscribe();
   }
 }

@@ -3,3 +3,4 @@ export const SELECT_CONVERSATION = '[Chat Module] Select Conversation';
 export const STORE_CONVERSATION_MESSAGES = '[Chat Module] Store Conversation Messages';
 export const SAVE_NEW_MESSAGE_OUT = '[Chat Module] Save new Message Out';
 export const SAVE_NEW_MESSAGE_IN = '[Chat Module] Save new Message In';
+export const UPDATE_ONLINE_USER_LIST = '[Chat Module] Update online User List';

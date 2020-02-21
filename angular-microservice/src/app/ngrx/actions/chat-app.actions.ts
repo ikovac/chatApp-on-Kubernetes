@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { IConversationListElement } from 'src/app/shared/interfaces/iconversationlistelement';
-import { SET_INITIAL_CONVERSATION_LIST, SELECT_CONVERSATION, STORE_CONVERSATION_MESSAGES, SAVE_NEW_MESSAGE_OUT, SAVE_NEW_MESSAGE_IN } from './action.types';
+import { SET_INITIAL_CONVERSATION_LIST, SELECT_CONVERSATION, STORE_CONVERSATION_MESSAGES, SAVE_NEW_MESSAGE_OUT, SAVE_NEW_MESSAGE_IN, UPDATE_ONLINE_USER_LIST } from './action.types';
 import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMessage';
 
 export const setInitialConversationList = createAction(
@@ -26,4 +26,9 @@ export const saveNewMessageOut = createAction(
 export const saveNewMessageIn = createAction(
   SAVE_NEW_MESSAGE_IN,
   props<{ newMessageIn: IConversationMessage, newConversationListElement: IConversationListElement }>()
+);
+
+export const updateOnlineUsers = createAction(
+  UPDATE_ONLINE_USER_LIST,
+  props<{ onlineUsers: string[] }>()
 );

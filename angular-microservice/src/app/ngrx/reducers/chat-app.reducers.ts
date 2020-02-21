@@ -8,14 +8,14 @@ export interface IChatAppState {
   conversationList: IConversationListElement[];
   selectedConversation: IConversationListElement | null;
   conversationMessages: object;
-  onlineUsers: object;
+  onlineUsers: string[];
 }
 
 const initialChatAppState: IChatAppState = {
   conversationList: [],
   selectedConversation: null,
   conversationMessages: {},
-  onlineUsers: {}
+  onlineUsers: []
 };
 
 const _chatAppReducer = createReducer(
@@ -85,6 +85,10 @@ const _chatAppReducer = createReducer(
         conversationList: updatedConversationList
       };
     }
+  ),
+  on(
+    chatAppActions.updateOnlineUsers,
+    (state, { onlineUsers }) => ({ ...state, onlineUsers })
   )
 );
 

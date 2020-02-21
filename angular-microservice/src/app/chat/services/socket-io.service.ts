@@ -21,4 +21,8 @@ export class SocketIoService {
   onMsg() {
     return this.socket.fromEvent('msg_in');
   }
+
+  onNewOnlineUserList() {
+    return this.socket.fromEvent('online_users');
+  }
 }

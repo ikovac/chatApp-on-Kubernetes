@@ -9,3 +9,4 @@ export const searchForConversation = (state: IAppState, props) => {
   return state.chatApp.conversationMessages[conversationId];
 };
 
+export const getOnlineUsers = (state: IAppState) => state.chatApp.onlineUsers;
