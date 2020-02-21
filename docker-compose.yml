@@ -9,16 +9,20 @@ services:
       - MYSQL_DATABASE=chatapp
     # volumes: 
       # - "./mysql-microservice/db:/var/lib/mysql"
+  redis_microservice: 
+    image: 'redis'
   nodejs_microservice:
     build: './nodejs-microservice'
     depends_on:
       - mysql_microservice
+      - redis_microservice
     environment:
       - NODEJS_DB_HOST=mysql_microservice
       - NODEJS_DB_USER=root
       - NODEJS_DB_PASSWORD=admin
       - NODEJS_DB=chatapp
       - NODEJS_JWT_SECRET=my_hard_to_guess_secret
+      - NODEJS_REDIS_HOST=redis_microservice
       # - NODEJS_CLIENT_HOST=angular_microservice
     volumes:
       - './nodejs-microservice/src:/usr/src/app/src'
