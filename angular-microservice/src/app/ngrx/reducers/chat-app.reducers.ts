@@ -57,7 +57,15 @@ const _chatAppReducer = createReducer(
       const { conversationId } = newConversationListElement;
       const oldConversationListElement = state.conversationList.find(conv => conv.conversationId === conversationId);
       const updatedConversationList = state.conversationList.filter(conv => conv.conversationId !== conversationId);
-      updatedConversationList.unshift({ ...newConversationListElement, conversation_name: oldConversationListElement.conversation_name });
+
+      let conversationName = '';
+      if (!oldConversationListElement) {
+        conversationName = newConversationListElement.is_group ? newConversationListElement.conversation_name : newMessageIn.sender;
+      } else {
+        conversationName = oldConversationListElement.conversation_name;
+      }
+
+      updatedConversationList.unshift({ ...newConversationListElement, conversation_name: conversationName });
 
       let oldConversationMessages = [];
       oldConversationMessages = state.conversationMessages[conversationId];
