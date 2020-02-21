@@ -1,11 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
-import * as logger from 'morgan';
+import * as restLogger from 'morgan';
 import { execSync } from 'child_process';
 import { RedisIoAdapter } from './modules/events/redis-io.adapter';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
+  const logger = new Logger('Main');
+
   const app = await NestFactory.create(AppModule);
   app.useWebSocketAdapter(new RedisIoAdapter(app));
   
@@ -13,14 +16,14 @@ async function bootstrap() {
     origin: [process.env.NODEJS_CLIENT_HOST || 'http://localhost:4200'],
     credentials: true,
   });
-  app.use(logger('dev'));
+  app.use(restLogger('dev'));
   app.use(cookieParser());
 
   try {
-    const stdout = execSync('npm run typeorm:run');
-    console.log('Migration run was completed successfully');
+    execSync('npm run typeorm:run');
+    logger.log('Migration run was completed successfully');
   } catch (err) {
-    console.log('Migration run failed.');
+    logger.error('Migration run failed.');
   }
 
   await app.listen(3000);

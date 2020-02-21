@@ -3,8 +3,8 @@ import * as cookie from 'cookie';
 
 @WebSocketGateway()
 export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
-  @WebSocketServer()
-  server;
+  /* @WebSocketServer()
+  server; */
 
   @SubscribeMessage('msg')
   handleMessage(client: any, payload: any): WsResponse<unknown> {
