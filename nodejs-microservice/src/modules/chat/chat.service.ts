@@ -28,4 +28,8 @@ export class ChatService {
             LEFT JOIN conversation c ON m.conversationId = c.id
             WHERE m.conversationId = ?;`, [userId, conversationId]);
     }
+
+    async getAllConversationsUsers() {
+        return await getConnection().query(`SELECT * from conversation_users_user;`);
+    }
 }
