@@ -1,8 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { getConnection } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Conversation } from 'src/entities/conversation.entity';
 
 @Injectable()
 export class ChatService {
+
+    constructor(
+        @InjectRepository(Conversation) private readonly convRepo: Repository<Conversation>,
+    ) {}
 
     async getAllConversationsForUser(userId: number) {
         return await getConnection().query(`
@@ -31,5 +37,28 @@ export class ChatService {
 
     async getAllConversationsUsers() {
         return await getConnection().query(`SELECT * from conversation_users_user;`);
+    }
+
+    async checkIfConversationExists(participants) {
+        const { creatorId, receiverId } = participants;
+
+        return await getConnection().query(`
+            SELECT cu.conversationId, c.is_group
+            FROM conversation_users_user cu
+            LEFT JOIN conversation c ON cu.conversationId = c.id
+            WHERE cu.conversationId IN
+                (SELECT conversationId from conversation_users_user WHERE userId = ?)
+            AND cu.userId = ?
+            AND is_group = 0;`, [creatorId, receiverId]);
+    }
+
+    async createNewConversation(participants) {
+        const { creatorId, receiverId } = participants;
+
+        const conversation = new Conversation();
+        conversation.is_group = false;
+        conversation.users = [creatorId, receiverId];
+
+        return await this.convRepo.save(conversation);
     }
 }

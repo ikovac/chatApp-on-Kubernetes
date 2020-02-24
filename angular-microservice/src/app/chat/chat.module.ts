@@ -13,6 +13,7 @@ import { ConversationMessagesPartComponent } from './components/conversation-mes
 import { ConversationInputPartComponent } from './components/conversation-input-part/conversation-input-part.component';
 import { ConversationNotSelectedComponent } from './components/conversation-not-selected/conversation-not-selected.component';
 import { FormsModule } from '@angular/forms';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { FormsModule } from '@angular/forms';
     ConversationHeaderPartComponent,
     ConversationMessagesPartComponent,
     ConversationInputPartComponent,
-    ConversationNotSelectedComponent
+    ConversationNotSelectedComponent,
+    DialogComponent
   ],
   imports: [
     CommonModule,
@@ -33,6 +35,6 @@ import { FormsModule } from '@angular/forms';
     AngularMaterialModule,
     FormsModule
   ],
-  entryComponents: [ChatRootComponent]
+  entryComponents: [ChatRootComponent, DialogComponent]
 })
 export class ChatModule { }

@@ -54,6 +54,19 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
 
   }
 
+  @SubscribeMessage('new_conversation')
+  async handleNewConversation(socket: any, payload: { creatorId: number, receiverId: number }) {
+
+    let conversationExists = await this.chatService.checkIfConversationExists(payload);
+
+    if (!conversationExists.length) {
+      conversationExists = await this.chatService.createNewConversation(payload);
+    }
+
+    // emit back to the client.
+    socket.emit('new_conversation_response', conversationExists);
+  }
+
   async handleDisconnect(client) {
     this.logger.log('New Disconnection');
 

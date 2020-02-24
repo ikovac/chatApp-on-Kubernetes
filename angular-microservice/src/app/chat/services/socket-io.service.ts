@@ -25,4 +25,8 @@ export class SocketIoService {
   onNewOnlineUserList() {
     return this.socket.fromEvent('online_users');
   }
+
+  emitNewConversation(data) {
+    this.socket.emit('new_conversation', data);
+  }
 }
