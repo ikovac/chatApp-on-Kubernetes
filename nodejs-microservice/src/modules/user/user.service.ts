@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/entities/user.entity';
-import { Repository } from 'typeorm';
+import { Repository, Not } from 'typeorm';
 import { IUser } from 'src/interfaces/user.interface';
 import { AuthService } from '../auth/auth.service';
 
@@ -35,5 +35,9 @@ export class UserService {
         }
 
         return await this.authService.sign(result);
+    }
+
+    async getAllUsers(currentUser) {
+        return await this.userRepo.find({id: Not(currentUser)});
     }
 }

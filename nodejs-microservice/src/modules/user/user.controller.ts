@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Get, UseGuards, Request as Req, Response as Res } from '@nestjs/common';
+import { Controller, Post, Body, Get, UseGuards, Request as Req, Response as Res, Param } from '@nestjs/common';
 import { IUser } from 'src/interfaces/user.interface';
 import { UserService } from './user.service';
 import { Response, Request } from 'express';
@@ -28,6 +28,15 @@ export class UserController {
             status: true,
             msg: 'User found',
             data: jwt
+        });
+    }
+
+    @Get('getall/:currentUser')
+    async getAllUsers(@Param() params): Promise<IUser[]> {
+        const dbUsers = await this.userService.getAllUsers(params.currentUser);
+        return dbUsers.map(user => {
+            const {pass, ...rest} = user;
+            return rest;
         });
     }
 
