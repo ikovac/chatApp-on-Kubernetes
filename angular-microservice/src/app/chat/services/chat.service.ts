@@ -35,4 +35,26 @@ export class ChatService {
 
     return this.http.get<IUser[]>(`${this.url}/user/getall/${user.id}`, { withCredentials: true });
   }
+
+  newConversation(receiverId): Observable<any> {
+    const user = this.loginService.getLoggedInUser();
+
+    const body = {
+      creatorId: user.id,
+      receiverId
+    };
+
+    return this.http.post<any>(`${this.url}/api/chat/newconversation`, body, { withCredentials: true });
+  }
+
+  newGroup(groupMembers, groupName): Observable<any> {
+    const user = this.loginService.getLoggedInUser();
+
+    const body = {
+      groupMembers: [...groupMembers, user.id],
+      groupName
+    };
+
+    return this.http.post<any>(`${this.url}/api/chat/newgroup`, body, { withCredentials: true });
+  }
 }

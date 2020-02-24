@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { DialogComponent } from '../dialog/dialog.component';
-import { takeWhile } from 'rxjs/operators';
+import { takeWhile, flatMap } from 'rxjs/operators';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-message-buttons-section',
@@ -10,7 +11,10 @@ import { takeWhile } from 'rxjs/operators';
 })
 export class MessageButtonsSectionComponent implements OnInit {
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private chatService: ChatService,
+  ) { }
 
   ngOnInit() {
   }
@@ -27,12 +31,20 @@ export class MessageButtonsSectionComponent implements OnInit {
     });
 
     dialogRef.afterClosed()
-      .pipe(takeWhile(result => result))
-      .subscribe(result => {
-        console.log("result: ", result);
-        // Send request to server depends on isGroup
-
-        // After server returns respons make selectedConversation = serverResponse + isGroup, conversationName
+      .pipe(
+        takeWhile(result => result),
+        flatMap(result => {
+          if (!result.isGroup) {
+            console.log("conversation");
+            return this.chatService.newConversation(result.conversationParticipants.id);
+          } else {
+            console.log("group");
+            return this.chatService.newGroup(result.groupParticipants, result.groupName);
+          }
+        })
+      )
+      .subscribe(res => {
+        console.log("Res: ", res);
       });
   }
 

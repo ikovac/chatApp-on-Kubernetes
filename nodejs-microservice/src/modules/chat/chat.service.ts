@@ -2,13 +2,15 @@ import { Injectable } from '@nestjs/common';
 import { getConnection, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Conversation } from 'src/entities/conversation.entity';
+import { User } from 'src/entities/user.entity';
 
 @Injectable()
 export class ChatService {
 
     constructor(
         @InjectRepository(Conversation) private readonly convRepo: Repository<Conversation>,
-    ) {}
+        @InjectRepository(User) private readonly userRepo: Repository<User>,
+    ) { }
 
     async getAllConversationsForUser(userId: number) {
         return await getConnection().query(`
@@ -55,9 +57,28 @@ export class ChatService {
     async createNewConversation(participants) {
         const { creatorId, receiverId } = participants;
 
+        const creator = await this.userRepo.findOne(creatorId);
+        const receiver = await this.userRepo.findOne(receiverId);
+
         const conversation = new Conversation();
         conversation.is_group = false;
-        conversation.users = [creatorId, receiverId];
+        conversation.users = [creator, receiver];
+
+        return await this.convRepo.save(conversation);
+    }
+
+    async createNewGroup({ groupMembers, groupName }) {
+
+        const getGroupMembers = async () => {
+            return Promise.all<User>(groupMembers.map(async userId => await this.userRepo.findOne(userId)));
+        };
+
+        const mappedUsers = await getGroupMembers();
+        
+        const conversation = new Conversation();
+        conversation.is_group = true;
+        conversation.group_name = groupName;
+        conversation.users = mappedUsers;
 
         return await this.convRepo.save(conversation);
     }

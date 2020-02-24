@@ -8,16 +8,18 @@ export class Conversation {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({default: false})
+    @Column({ default: false })
     is_group: boolean;
 
-    @Column({default: ''})
+    @Column({ default: '' })
     group_name: string;
 
     @OneToMany(type => Message, messages => messages.conversation)
     messages: Message[];
 
-    @ManyToMany(type => User)
+    @ManyToMany(type => User, {
+        cascade: true
+    })
     @JoinTable()
     users: User[];
 }
