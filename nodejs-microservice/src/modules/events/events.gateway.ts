@@ -31,7 +31,6 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     // Join New User to Chat Rooms
     let conversationsUsers = await this.redisClientService.getConversationsUsers();
     if (!conversationsUsers) {
-      console.log("DB QUERY");
       conversationsUsers = await this.chatService.getAllConversationsUsers();
       await this.redisClientService.setConversationsUsers(conversationsUsers);
     }
@@ -43,7 +42,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   }
 
   @SubscribeMessage('msg_out')
-  handleMessageOut(socket: any, payload: any) {
+  async handleMessageOut(socket: any, payload: any) {
     // Emits to everyone except sender.
     // socket.broadcast.emit('msg_in', payload);
 
@@ -51,7 +50,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
     socket.broadcast.to(String(payload.newMessageIn.conversationId)).emit('msg_in', payload);
 
     // Save new message to the DB.
-
+    await this.chatService.saveNewMessage(payload);
   }
 
   async handleDisconnect(client) {

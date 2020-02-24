@@ -5,7 +5,7 @@
 </div>
 <div mat-dialog-content class="dialog-content">
   <div *ngIf="data.isGroup">
-    <input matInput [(ngModel)]="data.groupName" placeholder="Naslov grupe" />
+    <input matInput [(ngModel)]="data.groupName" placeholder="Naslov grupe" autocomplete="off"/>
 
     <p>Odaberite sudionike grupe:</p>
     <div class="friend-list-wrapper">

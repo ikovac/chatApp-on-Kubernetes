@@ -3,6 +3,7 @@ import { getConnection, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Conversation } from 'src/entities/conversation.entity';
 import { User } from 'src/entities/user.entity';
+import { Message } from 'src/entities/message.entity';
 
 @Injectable()
 export class ChatService {
@@ -10,6 +11,7 @@ export class ChatService {
     constructor(
         @InjectRepository(Conversation) private readonly convRepo: Repository<Conversation>,
         @InjectRepository(User) private readonly userRepo: Repository<User>,
+        @InjectRepository(Message) private readonly messageRepo: Repository<Message>,
     ) { }
 
     async getAllConversationsForUser(userId: number) {
@@ -74,12 +76,23 @@ export class ChatService {
         };
 
         const mappedUsers = await getGroupMembers();
-        
+
         const conversation = new Conversation();
         conversation.is_group = true;
         conversation.group_name = groupName;
         conversation.users = mappedUsers;
 
         return await this.convRepo.save(conversation);
+    }
+
+    async saveNewMessage(payload) {
+        const {newMessageIn} = payload;
+
+        const message = new Message();
+        message.message_text = newMessageIn.message_text;
+        message.user = newMessageIn.userId;
+        message.conversation = newMessageIn.conversationId;
+
+        return await this.messageRepo.save(message);
     }
 }

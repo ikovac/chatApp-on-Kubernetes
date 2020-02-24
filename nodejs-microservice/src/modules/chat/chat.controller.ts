@@ -27,6 +27,8 @@ export class ChatController {
         if (!conversationExists.length) {
             const createdConversation = await this.chatService.createNewConversation(body);
             conversationExists = { ...conversationExists, conversationId: createdConversation.id, is_group: 0 };
+        } else {
+            conversationExists = conversationExists[0];
         }
 
         res.json(conversationExists);

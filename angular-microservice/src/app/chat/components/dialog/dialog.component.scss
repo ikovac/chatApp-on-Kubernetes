@@ -15,6 +15,17 @@
   p {
     margin-top: 0px;
   }
+
+  input {
+    border: 0;
+    border-bottom: 2px solid #00bfa5;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px;
+    outline: none;
+    font-size: 18px;
+    color: #4a4a4a;
+  }
 }
 
 .friend-list-wrapper {
