@@ -5,8 +5,9 @@ import { IUser } from 'src/app/shared/interfaces/iuser';
 import { Observable } from 'rxjs';
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  conversationParticipants: any;
+  isGroup: boolean;
+  groupName: string;
 }
 
 
@@ -32,4 +33,7 @@ export class DialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  onFriendClick(friend) {
+    this.data.conversationParticipants = friend.id;
+  }
 }

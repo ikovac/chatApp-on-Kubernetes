@@ -8,24 +8,25 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./message-buttons-section.component.scss']
 })
 export class MessageButtonsSectionComponent implements OnInit {
-  name: 'Ivo';
-  animal: 'Dog';
+  conversationParticipants: any;
+  groupName: string;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
-  openDialog(): void {
+  openDialog(isGroup: boolean): void {
     const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
+      width: '400px',
+      data: {conversationParticipants: this.conversationParticipants, isGroup, groupName: this.groupName}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    /* dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log("result: ", result);
       this.animal = result;
-    });
+    }); */
   }
 
 }

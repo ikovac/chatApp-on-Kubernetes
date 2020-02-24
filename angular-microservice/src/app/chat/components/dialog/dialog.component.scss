@@ -1,0 +1,63 @@
+.dialog-header {
+  background-color: #48c0a5;
+  color: white;
+  padding: 20px;
+  margin: 0px !important;
+  span {
+    font-family: inherit;
+  }
+}
+
+.dialog-content {
+  padding: 20px !important;
+  margin: 0px !important;
+
+  p {
+    margin-top: 0px;
+  }
+}
+
+.friend-list-wrapper {
+  .friend-element {
+    border-top: 1px solid #f5f5f5;
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f5f5f5;
+    }
+
+    &.selected {
+      background-color: #e2e2e2;
+    }
+  }
+}
+
+.dialog-actions {
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+
+  .submit-btn {
+    background-color: #6bea5c;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px #888889;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    min-width: unset;
+
+    mat-icon {
+      color: white;
+    }
+
+    &:disabled {
+      background-color: #d4d4d4;
+      box-shadow: none;
+    }
+  }
+}

@@ -1,15 +1,28 @@
-<h1 mat-dialog-title>Select receiver</h1>
-<div mat-dialog-content>
-  <!-- <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field> -->
-  <div *ngFor="let friend of friendList$ | async">
-    {{ friend.first_name }}
+<div mat-dialog-title class="dialog-header">
+  Stvorite
+  <span *ngIf="data.isGroup"> novu grupu</span>
+  <span *ngIf="!data.isGroup"> novi razgovor</span>
+</div>
+<div mat-dialog-content class="dialog-content">
+  <div *ngIf="data.isGroup">
+    <input matInput [(ngModel)]="data.groupName" placeholder="Naslov grupe" />
+  </div>
+  <div *ngIf="!data.isGroup">
+    <p>Odaberite primatelja:</p>
+    <div class="friend-list-wrapper">
+      <div
+        *ngFor="let friend of friendList$ | async"
+        class="friend-element"
+        [class.selected]="data.conversationParticipants == friend.id"
+        (click)="onFriendClick(friend)">
+        {{ friend.first_name }} {{ friend.last_name}}
+      </div>
+    </div>
   </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+<div mat-dialog-actions class="dialog-actions">
+  <!-- <button mat-button (click)="onNoClick()">Close</button> -->
+  <button mat-button [mat-dialog-close]="data" [disabled]="!data.conversationParticipants" class="submit-btn">
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
 </div>
