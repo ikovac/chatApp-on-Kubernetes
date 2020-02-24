@@ -1,10 +1,10 @@
 import { SubscribeMessage, WebSocketGateway, WebSocketServer, OnGatewayConnection, OnGatewayDisconnect } from '@nestjs/websockets';
 import * as cookie from 'cookie';
-import { RedisClientService } from './redis-client.service';
 import { AuthService } from '../auth/auth.service';
 import { Logger } from '@nestjs/common';
 import { ChatService } from '../chat/chat.service';
 import { IUser } from 'src/interfaces/user.interface';
+import { RedisClientService } from 'src/redis-client.service';
 
 @WebSocketGateway()
 export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {

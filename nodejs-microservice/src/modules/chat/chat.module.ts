@@ -5,9 +5,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Conversation } from 'src/entities/conversation.entity';
 import { Message } from 'src/entities/message.entity';
 import { User } from 'src/entities/user.entity';
+import { RedisClientService } from 'src/redis-client.service';
 
 @Module({
-  providers: [ChatService],
+  providers: [ChatService, RedisClientService],
   controllers: [ChatController],
   imports: [TypeOrmModule.forFeature([Conversation, Message, User])],
   exports: [ChatService]
