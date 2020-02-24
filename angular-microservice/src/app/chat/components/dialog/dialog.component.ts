@@ -5,9 +5,10 @@ import { IUser } from 'src/app/shared/interfaces/iuser';
 import { Observable } from 'rxjs';
 
 export interface DialogData {
-  conversationParticipants: any;
-  isGroup: boolean;
-  groupName: string;
+  conversationParticipants?: IUser;
+  isGroup?: boolean;
+  groupName?: string;
+  groupParticipants?: number[];
 }
 
 
@@ -34,6 +35,41 @@ export class DialogComponent implements OnInit {
   }
 
   onFriendClick(friend) {
-    this.data.conversationParticipants = friend.id;
+    this.data.conversationParticipants = friend;
+  }
+
+  onFriendGroupClick(friend) {
+    if (!this.data.groupParticipants) {
+      this.data.groupParticipants = [];
+    }
+    if (!this.data.groupParticipants.includes(friend.id)) {
+      this.data.groupParticipants.push(friend.id);
+    } else {
+      this.data.groupParticipants = this.data.groupParticipants.filter(el => el !== friend.id);
+    }
+  }
+
+  isFriendSelectedInGroup(friendId) {
+    return (this.data.groupParticipants || []).includes(friendId);
+  }
+
+  isFriendSelectedInConversation(friendId) {
+    const { conversationParticipants } = this.data;
+
+    if (!conversationParticipants) {
+      return false;
+    }
+
+    return conversationParticipants.id === friendId;
+  }
+
+  checkIfValid() {
+    const { isGroup, groupParticipants, groupName, conversationParticipants } = this.data;
+
+    if (isGroup) {
+      return (groupParticipants && groupParticipants.length && groupName) ? true : false;
+    }
+
+    return conversationParticipants ? true : false;
   }
 }

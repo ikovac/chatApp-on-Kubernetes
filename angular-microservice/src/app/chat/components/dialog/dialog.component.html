@@ -6,6 +6,17 @@
 <div mat-dialog-content class="dialog-content">
   <div *ngIf="data.isGroup">
     <input matInput [(ngModel)]="data.groupName" placeholder="Naslov grupe" />
+
+    <p>Odaberite sudionike grupe:</p>
+    <div class="friend-list-wrapper">
+      <div
+        *ngFor="let friend of friendList$ | async"
+        class="friend-element"
+        [class.selected]="isFriendSelectedInGroup(friend.id)"
+        (click)="onFriendGroupClick(friend)">
+        {{ friend.first_name }} {{ friend.last_name}}
+      </div>
+    </div>
   </div>
   <div *ngIf="!data.isGroup">
     <p>Odaberite primatelja:</p>
@@ -13,7 +24,7 @@
       <div
         *ngFor="let friend of friendList$ | async"
         class="friend-element"
-        [class.selected]="data.conversationParticipants == friend.id"
+        [class.selected]="isFriendSelectedInConversation(friend.id)"
         (click)="onFriendClick(friend)">
         {{ friend.first_name }} {{ friend.last_name}}
       </div>
@@ -22,7 +33,7 @@
 </div>
 <div mat-dialog-actions class="dialog-actions">
   <!-- <button mat-button (click)="onNoClick()">Close</button> -->
-  <button mat-button [mat-dialog-close]="data" [disabled]="!data.conversationParticipants" class="submit-btn">
+  <button mat-button [mat-dialog-close]="data" [disabled]="!checkIfValid()" class="submit-btn">
     <mat-icon>arrow_forward</mat-icon>
   </button>
 </div>
