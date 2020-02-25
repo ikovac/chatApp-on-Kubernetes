@@ -26,7 +26,7 @@ export class SocketIoService {
     return this.socket.fromEvent('online_users');
   }
 
-  emitNewConversation(data) {
-    this.socket.emit('new_conversation', data);
+  emitNewConversation() {
+    this.socket.emit('newconversation');
   }
 }

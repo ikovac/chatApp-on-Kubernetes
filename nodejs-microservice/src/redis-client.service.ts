@@ -10,7 +10,7 @@ export class RedisClientService {
     async getOnlineUsers(user) {
         const onlineUsersJSON = await this.redisService.getClient().get('online_users');
         const onlineUsers = onlineUsersJSON ? JSON.parse(onlineUsersJSON) : [];
-
+        
         const userFullName = user.first_name + ' ' + user.last_name;
 
         if (!onlineUsers.includes(userFullName)) {

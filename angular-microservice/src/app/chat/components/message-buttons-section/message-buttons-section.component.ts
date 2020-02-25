@@ -7,6 +7,7 @@ import { IConversationListElement } from 'src/app/shared/interfaces/iconversatio
 import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/ngrx/reducers/chat-app.reducers';
 import { selectConversation } from 'src/app/ngrx/actions/chat-app.actions';
+import { SocketIoService } from '../../services/socket-io.service';
 
 @Component({
   selector: 'app-message-buttons-section',
@@ -21,6 +22,7 @@ export class MessageButtonsSectionComponent implements OnInit {
     public dialog: MatDialog,
     private chatService: ChatService,
     private readonly store: Store<IAppState>,
+    private socketService: SocketIoService,
   ) { }
 
   ngOnInit() {
@@ -69,6 +71,7 @@ export class MessageButtonsSectionComponent implements OnInit {
         }
 
         this.store.dispatch(selectConversation({ selectedConversation: newSelectedConversation }));
+        this.socketService.emitNewConversation();
       });
   }
 

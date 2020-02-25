@@ -4,14 +4,12 @@ import { ChatService } from './chat.service';
 import { IDbAllUserConversations } from 'src/interfaces/dbAllUserConversations.interface';
 import { IConversationMessages } from 'src/interfaces/conversationMessages.interface';
 import { Request, Response } from 'express';
-import { RedisClientService } from 'src/redis-client.service';
 
 @Controller('api/chat')
 // @UseGuards(AuthGuard('jwt'))
 export class ChatController {
     constructor(
         private readonly chatService: ChatService,
-        private readonly redisClientService: RedisClientService,
     ) { }
 
     @Get('getalluserconversations/:id')
@@ -31,9 +29,6 @@ export class ChatController {
         if (!conversationExists.length) {
             const createdConversation = await this.chatService.createNewConversation(body);
             conversationExists = { ...conversationExists, conversationId: createdConversation.id, is_group: 0 };
-
-            const conversationsUsers = await this.chatService.getAllConversationsUsers();
-            await this.redisClientService.setConversationsUsers(conversationsUsers);
         } else {
             conversationExists = conversationExists[0];
         }
@@ -46,9 +41,6 @@ export class ChatController {
     async createNewGroup(@Body() body: { groupMembers: number[], groupName: string }, @Req() req: Request, @Res() res: Response) {
 
         const createdGroup = await this.chatService.createNewGroup(body);
-
-        const conversationsUsers = await this.chatService.getAllConversationsUsers();
-        await this.redisClientService.setConversationsUsers(conversationsUsers);
 
         res.json(createdGroup);
     }
