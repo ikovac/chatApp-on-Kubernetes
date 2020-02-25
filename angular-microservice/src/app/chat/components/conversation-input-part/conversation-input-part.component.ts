@@ -15,7 +15,9 @@ export class ConversationInputPartComponent implements OnInit {
   }
 
   onFormSubmit() {
-    this.emitInputMessage.emit(this.messageText);
-    this.messageText = '';
+    if(this.messageText.length) {
+      this.emitInputMessage.emit(this.messageText);
+      this.messageText = '';
+    }
   }
 }

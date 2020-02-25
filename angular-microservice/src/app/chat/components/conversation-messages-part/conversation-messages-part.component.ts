@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, NgZone } from '@angular/core';
+import { Component, Input, NgZone, AfterViewInit, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMessage';
 
 @Component({
@@ -6,12 +6,31 @@ import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMes
   templateUrl: './conversation-messages-part.component.html',
   styleUrls: ['./conversation-messages-part.component.scss']
 })
-export class ConversationMessagesPartComponent implements OnInit {
+export class ConversationMessagesPartComponent implements AfterViewInit {
   @Input() messages: IConversationMessage[];
+  @ViewChild('scrollElement', { static: true }) scrollFrame: ElementRef;
+  @ViewChildren('messages') itemElements: QueryList<any>;
+
+  private scrollContainer: any;
+
 
   constructor(private zone: NgZone) { }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    this.scrollContainer = this.scrollFrame.nativeElement;
+    this.itemElements.changes.subscribe(_ => this.onItemElementsChanged());
+    // this.onItemElementsChanged();
+  }
+
+  private onItemElementsChanged(): void {
+    this.scrollToBottom();
+  }
+
+  private scrollToBottom(): void {
+    this.scrollContainer.scroll({
+      top: this.scrollContainer.scrollHeight,
+      left: 0,
+    });
   }
 
   timeSectionFormatter(timestamp) {
@@ -36,5 +55,4 @@ export class ConversationMessagesPartComponent implements OnInit {
 
     return `${dd}. ${mm}. ${yy}`;
   }
-
 }

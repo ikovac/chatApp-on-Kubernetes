@@ -1,11 +1,11 @@
 <div
   class="messages-wrapper"
   #scrollElement
-  [scrollTop]="scrollElement.scrollHeight"
 >
   <div
     *ngFor="let message of messages"
     class="{{ message.message_class }} message"
+    #messages
   >
     <div class="txt">
       <p *ngIf="message.is_group" class="name">{{ message.sender }}</p>
