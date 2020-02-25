@@ -36,7 +36,8 @@ export class ChatService {
             FROM message m
             LEFT JOIN user u ON m.userId = u.id
             LEFT JOIN conversation c ON m.conversationId = c.id
-            WHERE m.conversationId = ?;`, [userId, conversationId]);
+            WHERE m.conversationId = ?
+            ORDER BY m.id ASC;`, [userId, conversationId]);
     }
 
     async getAllConversationsUsers() {
