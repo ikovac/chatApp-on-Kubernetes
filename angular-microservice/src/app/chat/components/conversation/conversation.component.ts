@@ -57,6 +57,7 @@ export class ConversationComponent implements OnInit, OnChanges, OnDestroy {
       is_group,
       timestamp: new Date(),
       userId: user.id,
+      sender: user.first_name + ' ' + user.last_name,
     };
 
     const newSelectedConversation = {
@@ -64,10 +65,6 @@ export class ConversationComponent implements OnInit, OnChanges, OnDestroy {
       message_text: newMessageOut.message_text,
       timestamp: newMessageOut.timestamp
     };
-
-    if (is_group) {
-      newMessageOut.sender = user.first_name + ' ' + user.last_name;
-    }
 
     this.store.dispatch(saveNewMessageOut({ newMessageOut, newSelectedConversation }));
     this.socketService.emitMsgOut({ newMessageOut, newSelectedConversation });
