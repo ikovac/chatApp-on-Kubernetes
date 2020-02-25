@@ -54,7 +54,6 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
   async handleMessageOut(socket: any, payload: any) {
     // Emits to everyone except sender.
     // socket.broadcast.emit('msg_in', payload);
-    console.log("PAYload: ", payload);
 
     // Emits to choosen chatRoom to everyone except sender.
     socket.broadcast.to(String(payload.newMessageIn.conversationId)).emit('msg_in', payload);
