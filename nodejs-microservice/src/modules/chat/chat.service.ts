@@ -40,6 +40,14 @@ export class ChatService {
             ORDER BY m.id ASC;`, [userId, conversationId]);
     }
 
+    async getConversationParticipants(conversationId: number) {
+        return await getConnection().query(`
+        SELECT u.first_name, u.last_name
+        FROM conversation_users_user cu
+        LEFT JOIN user u on cu.userId = u.id
+        WHERE cu.conversationId = ?`, [conversationId]);
+    }
+
     async getAllConversationsUsers() {
         return await getConnection().query(`SELECT * from conversation_users_user;`);
     }
@@ -87,7 +95,7 @@ export class ChatService {
     }
 
     async saveNewMessage(payload) {
-        const {newMessageIn} = payload;
+        const { newMessageIn } = payload;
 
         const message = new Message();
         message.message_text = newMessageIn.message_text;

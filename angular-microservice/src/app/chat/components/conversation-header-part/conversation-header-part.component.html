@@ -7,8 +7,8 @@
   </div>
 
   <section class="add-info">
-    <div class="friend-name">
-      <span>{{ selectedConversation.conversation_name }}</span>
+    <div class="friend-name" [class.is-group]="selectedConversation.is_group">
+      <span (click)="onConversationNameClick()">{{ selectedConversation.conversation_name }}</span>
     </div>
     <div class="online-status" *ngIf="!selectedConversation.is_group">
       <span>{{ onlineStatus ? 'na vezi' : null }}</span>

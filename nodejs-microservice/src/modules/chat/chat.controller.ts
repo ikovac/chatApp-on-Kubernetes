@@ -22,6 +22,11 @@ export class ChatController {
         return await this.chatService.getConversationMessages(params.userId, params.conversationId);
     }
 
+    @Get('conversationparticipants/:conversationId')
+    async getConversationParticipants(@Param() params): Promise<{ first_name: string, last_name: string }> {
+        return await this.chatService.getConversationParticipants(params.conversationId);
+    }
+
     @Post('newconversation')
     async createNewConversation(@Body() body: { creatorId: number, receiverId: number }, @Req() req: Request, @Res() res: Response) {
 

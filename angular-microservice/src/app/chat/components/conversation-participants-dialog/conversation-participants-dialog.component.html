@@ -1,0 +1,8 @@
+<div mat-dialog-title class="dialog-header">
+  Sudionici:
+</div>
+<div mat-dialog-content class="dialog-content">
+  <div *ngFor="let participant of conversationParticipants$ | async">
+    {{ participant.first_name }} {{ participant.last_name }}
+  </div>
+</div>

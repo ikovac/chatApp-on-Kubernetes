@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMessage';
 import { IUser } from 'src/app/shared/interfaces/iuser';
+import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,15 @@ export class ChatService {
   getConversationMessages(conversationId: number): Observable<IConversationMessage[]> {
     const user = this.loginService.getLoggedInUser();
 
-    return this.http.get<IConversationMessage[]>(`${this.url}/api/chat/getconversationmessages/${user.id}/${conversationId}`, { withCredentials: true });
+    return this.http
+      .get<IConversationMessage[]>
+      (`${this.url}/api/chat/getconversationmessages/${user.id}/${conversationId}`, { withCredentials: true });
+  }
+
+  getConversationParticipants(conversationId: number): Observable<{ first_name: string, last_name: string }> {
+    return this.http
+      .get<{ first_name: string; last_name: string }>
+      (`${this.url}/api/chat/conversationparticipants/${conversationId}`, { withCredentials: true });
   }
 
   getFriendList(): Observable<IUser[]> {
