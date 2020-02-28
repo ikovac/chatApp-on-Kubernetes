@@ -1,5 +1,15 @@
 <div class="profile-picture-wrapper">
-  <img src="../../../../assets/images/default-profile.png" alt="profile-img"/>
+  <img
+    src="../../../../assets/images/default-profile.png"
+    alt="profile-img"
+    *ngIf="!chatSummaryComponent.is_group"
+  />
+  <img
+    src="../../../../assets/images/group-image.png"
+    alt="profile-img"
+    *ngIf="chatSummaryComponent.is_group"
+    class="profile-group-img"
+  />
 </div>
 
 <div class="aside-part">

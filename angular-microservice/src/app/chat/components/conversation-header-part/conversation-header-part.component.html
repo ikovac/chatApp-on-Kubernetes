@@ -2,16 +2,25 @@
   <div class="profile-img-wrapper">
     <img
       src="../../../../assets/images/default-profile.png"
-      alt="profile img"
+      alt="profile-img"
+      *ngIf="!selectedConversation.is_group"
+    />
+    <img
+      src="../../../../assets/images/group-image.png"
+      alt="profile-img"
+      *ngIf="selectedConversation.is_group"
+      class="profile-group-img"
     />
   </div>
 
   <section class="add-info">
     <div class="friend-name" [class.is-group]="selectedConversation.is_group">
-      <span (click)="onConversationNameClick()">{{ selectedConversation.conversation_name }}</span>
+      <span (click)="onConversationNameClick()">{{
+        selectedConversation.conversation_name
+      }}</span>
     </div>
     <div class="online-status" *ngIf="!selectedConversation.is_group">
-      <span>{{ onlineStatus ? 'na vezi' : null }}</span>
+      <span>{{ onlineStatus ? "na vezi" : null }}</span>
     </div>
   </section>
 </header>
