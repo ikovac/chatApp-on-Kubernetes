@@ -3,7 +3,7 @@ FROM node:10-alpine as builder
 
 # build-time variables
 # prod|sandbox its value will be come from outside
-ARG env=prod
+# ARG env=prod
 
 RUN apk update && apk add --no-cache make git
 
@@ -15,7 +15,7 @@ RUN cd /app && npm install
 COPY .  /app
 
 
-RUN cd /app && npm run build --prod
+RUN cd /app && npm run build
 
 # Build a small nginx image with static website
 FROM nginx:alpine

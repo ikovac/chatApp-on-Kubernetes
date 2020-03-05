@@ -23,14 +23,17 @@ services:
       - NODEJS_DB=chatapp
       - NODEJS_JWT_SECRET=my_hard_to_guess_secret
       - NODEJS_REDIS_HOST=redis_microservice
-      # - NODEJS_CLIENT_HOST=angular_microservice
+      - NODEJS_CLIENT_HOST=http://localhost:4200
     volumes:
       - './nodejs-microservice/src:/usr/src/app/src'
     ports:
       - '3000:3000'
-  # angular_microservice:
-  #   build: './angular-microservice'
-  #   depends_on:
-  #     - nodejs_microservice
-  #   ports:
-  #     - '4200:80'
+  angular_microservice:
+    build: './angular-microservice'
+    environment:
+      - ANGULAR_NODEJS_HOST=nodejs_microservice
+    depends_on:
+      - nodejs_microservice
+    ports:
+      - '4200:80'
+    # command: tail -f /dev/null
