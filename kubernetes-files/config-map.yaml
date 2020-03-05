@@ -1,0 +1,12 @@
+apiVersion: v1
+data:
+ NODEJS_DB_HOST: mysql
+ NODEJS_DB_USER: root
+ NODEJS_DB_PASSWORD: admin
+ NODEJS_DB: chatapp
+ NODEJS_JWT_SECRET: my_hard_to_guess_secret
+ NODEJS_REDIS_HOST: redis
+ NODEJS_CLIENT_HOST: http://localhost:4200 #prominit nakon kreiranja nginx servisa.
+kind: ConfigMap
+metadata:
+  name: my-config

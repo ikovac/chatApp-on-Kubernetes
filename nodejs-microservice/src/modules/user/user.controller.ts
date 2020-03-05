@@ -21,7 +21,8 @@ export class UserController {
             });
         }
         const cookieOptions = {
-            expires: new Date(Date.now() + 24*3600000)
+            expires: new Date(Date.now() + 24 * 3600000),
+            domain: 'http://34.69.60.135',
         };
         res.cookie('token', jwt, cookieOptions);
         res.json({
@@ -35,7 +36,7 @@ export class UserController {
     async getAllUsers(@Param() params): Promise<IUser[]> {
         const dbUsers = await this.userService.getAllUsers(params.currentUser);
         return dbUsers.map(user => {
-            const {pass, ...rest} = user;
+            const { pass, ...rest } = user;
             return rest;
         });
     }
