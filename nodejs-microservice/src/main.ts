@@ -17,7 +17,7 @@ async function bootstrap() {
     credentials: true,
   });
   app.use(restLogger('dev'));
-  app.use(cookieParser(null, {sameSite: 'none'}));
+  app.use(cookieParser());
 
   try {
     execSync('npm run typeorm:run');

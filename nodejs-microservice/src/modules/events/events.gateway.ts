@@ -43,7 +43,7 @@ export class EventsGateway implements OnGatewayConnection, OnGatewayDisconnect {
       });
     }
 
-    
+
     // console.log("Client: ", Object.keys(client));
     // console.log("Conn socks: ", Object.keys(this.server.sockets.connected[client.id]));
     // console.log("Conn socks: ", Object.keys(this.server.clients().sockets));

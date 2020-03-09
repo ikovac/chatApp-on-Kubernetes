@@ -1,10 +1,10 @@
 import { Controller, Post, Body, Get, UseGuards, Request as Req, Response as Res, Param } from '@nestjs/common';
 import { IUser } from 'src/interfaces/user.interface';
 import { UserService } from './user.service';
-import { Response, Request } from 'express';
+import { Response, Request, CookieOptions } from 'express';
 import { AuthGuard } from '@nestjs/passport';
 
-@Controller('user')
+@Controller('api/user')
 export class UserController {
 
     constructor(private readonly userService: UserService) { }
@@ -20,9 +20,10 @@ export class UserController {
                 msg: 'User not found'
             });
         }
-        const cookieOptions = {
+        const cookieOptions: CookieOptions = {
             expires: new Date(Date.now() + 24 * 3600000),
-            domain: 'http://34.69.60.135',
+            // sameSite: 'none',
+            // secure: true,
         };
         res.cookie('token', jwt, cookieOptions);
         res.json({

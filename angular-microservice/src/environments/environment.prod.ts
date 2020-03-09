@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  serverUrl: 'http://35.192.121.61'
+  serverUrl: 'https://chatapp.test.com/api'
 };

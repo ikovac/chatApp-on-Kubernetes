@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: chatapp-ingress
+spec:
+  tls:
+  - hosts:
+    - chatapp.test.com
+    secretName: tls-secret
+  rules:
+    - host: chatapp.test.com
+      http:
+        paths:
+        - path: /
+          backend:
+            serviceName: nginx-service
+            servicePort: 80
+        - path: /backend
+          backend:
+            serviceName: nodejs-service
+            servicePort: 80
+
+
+# FIRST STEP
+
+# kubectl create clusterrolebinding cluster-admin-binding \
+#   --clusterrole cluster-admin \
+#   --user $(gcloud config get-value account)
+
+
+# SECOND STEP
+
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/mandatory.yaml
+
+
+# THIRD STEP
+
+# kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/nginx-0.30.0/deploy/static/provider/cloud-generic.yaml
+
+
+# FORTH STEP
+
+# CREATE THIS INGRESS RESOURCE AND MAKE SECRET
+# kubectl create secret tls tls-secret --cert=tls.cert --key=tls.key

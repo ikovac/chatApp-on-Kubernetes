@@ -6,7 +6,7 @@ data:
  NODEJS_DB: chatapp
  NODEJS_JWT_SECRET: my_hard_to_guess_secret
  NODEJS_REDIS_HOST: redis
- NODEJS_CLIENT_HOST: http://localhost:4200 #prominit nakon kreiranja nginx servisa.
+ NODEJS_CLIENT_HOST: https://chatapp.test.com
 kind: ConfigMap
 metadata:
   name: my-config
