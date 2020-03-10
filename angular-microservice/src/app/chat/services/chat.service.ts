@@ -6,7 +6,6 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { IConversationMessage } from 'src/app/shared/interfaces/iConversationMessage';
 import { IUser } from 'src/app/shared/interfaces/iuser';
-import { stringify } from 'querystring';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +21,7 @@ export class ChatService {
   getAllUserConversations(): Observable<IConversationListElement[]> {
     const user = this.loginService.getLoggedInUser();
 
-    return this.http.get<IConversationListElement[]>(`${this.url}/chat/getalluserconversations/${user.id}`, { withCredentials: true });
+    return this.http.get<IConversationListElement[]>(`${this.url}/api/chat/getalluserconversations/${user.id}`, { withCredentials: true });
   }
 
   getConversationMessages(conversationId: number): Observable<IConversationMessage[]> {
@@ -30,19 +29,19 @@ export class ChatService {
 
     return this.http
       .get<IConversationMessage[]>
-      (`${this.url}/chat/getconversationmessages/${user.id}/${conversationId}`, { withCredentials: true });
+      (`${this.url}/api/chat/getconversationmessages/${user.id}/${conversationId}`, { withCredentials: true });
   }
 
   getConversationParticipants(conversationId: number): Observable<{ first_name: string, last_name: string }> {
     return this.http
       .get<{ first_name: string; last_name: string }>
-      (`${this.url}/chat/conversationparticipants/${conversationId}`, { withCredentials: true });
+      (`${this.url}/api/chat/conversationparticipants/${conversationId}`, { withCredentials: true });
   }
 
   getFriendList(): Observable<IUser[]> {
     const user = this.loginService.getLoggedInUser();
 
-    return this.http.get<IUser[]>(`${this.url}/user/getall/${user.id}`, { withCredentials: true });
+    return this.http.get<IUser[]>(`${this.url}/api/user/getall/${user.id}`, { withCredentials: true });
   }
 
   newConversation(receiverId): Observable<any> {
@@ -53,7 +52,7 @@ export class ChatService {
       receiverId
     };
 
-    return this.http.post<any>(`${this.url}/chat/newconversation`, body, { withCredentials: true });
+    return this.http.post<any>(`${this.url}/api/chat/newconversation`, body, { withCredentials: true });
   }
 
   newGroup(groupMembers, groupName): Observable<any> {
@@ -64,6 +63,6 @@ export class ChatService {
       groupName
     };
 
-    return this.http.post<any>(`${this.url}/chat/newgroup`, body, { withCredentials: true });
+    return this.http.post<any>(`${this.url}/api/chat/newgroup`, body, { withCredentials: true });
   }
 }

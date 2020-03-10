@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subscription = this.loginService.login({
       username, pass
     }).subscribe((res: IStandardRes) => {
+      console.log("LOGIN RES: ", res);
       if (!res.status) {
         this.loginForm.patchValue({
           username: '',
@@ -42,6 +43,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         });
         this.errorMsg = res.msg;
       } else {
+        this.loginService.setToken(res.data);
         this.router.navigate(['/']);
       }
     });

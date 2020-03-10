@@ -18,26 +18,30 @@ export class LoginService {
   ) { }
 
   login(user: IUser) {
-    return this.http.post(`${this.url}/user/login`, user, { withCredentials: true });
+    console.log(`Login attempt at url: ${this.url}/api/user/login`);
+    return this.http.post(`${this.url}/api/user/login`, user, { withCredentials: true });
   }
 
   logout() {
-    if (this.cookieService.check('token')) {
-      this.cookieService.delete('token');
+    if (localStorage.getItem('token')) {
+      localStorage.removeItem('token');
     }
   }
 
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
   isAuthenticated(): boolean {
-    if (!this.cookieService.check('token')) {
+    const token = localStorage.getItem('token');
+    if (!token) {
       return false;
     }
-
-    const token = this.cookieService.get('token');
     return !this.jwtHelper.isTokenExpired(token);
   }
 
   getLoggedInUser(): IUser {
-    const token = this.cookieService.get('token');
+    const token = localStorage.getItem('token');
 
     const user = this.jwtHelper.decodeToken(token);
     return user ? user : null;

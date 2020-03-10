@@ -22,8 +22,8 @@ export class UserController {
         }
         const cookieOptions: CookieOptions = {
             expires: new Date(Date.now() + 24 * 3600000),
-            // sameSite: 'none',
-            // secure: true,
+            sameSite: 'none',
+            secure: true,
         };
         res.cookie('token', jwt, cookieOptions);
         res.json({

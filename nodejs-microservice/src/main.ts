@@ -13,7 +13,7 @@ async function bootstrap() {
   app.useWebSocketAdapter(new RedisIoAdapter(app));
 
   app.enableCors({
-    origin: [process.env.NODEJS_CLIENT_HOST || 'http://localhost:4200'],
+    origin: [process.env.NODEJS_CLIENT_HOST || 'https://chatapp.test.com'],
     credentials: true,
   });
   app.use(restLogger('dev'));
